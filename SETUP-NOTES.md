@@ -34,7 +34,7 @@ PASS for a negative test means the expected failure was observed, not that an in
 | Compose syntax | `docker compose --env-file research/.env.example -f research/compose.yml config --quiet` | Exit 0; no reference runtime launched or validated. | PASS |
 | Delivery scanner prerequisite | `gitleaks version` | 8.30.1 present; actual final delivery scan not run. | PASS |
 | Supplied files | Byte comparison against `../inputs/` | Setup prompt, observation JSON and all five PNGs identical. All specified inputs present; no missing document placeholder. | PASS |
-| Committed fresh clone | See audit record below | Pending scaffold commit and installation/check in an independent local clone. | NOT RUN |
+| Committed fresh clone | See audit record below | Scaffold commit cloned independently; frozen-lockfile installation and all 47 tests passed; clone remained clean. | PASS |
 
 The recovered native audit is stored locally in ignored `.setup-audit/role-sandbox.json`. It contains commands' outcomes, including the two complete gate runs. It uses synthetic sentinels only and removes them and generated role files afterward. Do not run it with real held-out evidence present.
 
@@ -67,7 +67,7 @@ The current allowlist is deliberately narrow. If the client exposes incompatible
 
 ## Audit record and next phase
 
-Fresh-clone audit: pending at the time of this initial scaffold record. A follow-up documentation record will identify the actual scaffold commit and observed install/check outcome; no successful audit is claimed in advance.
+Scaffold commit: `ae51f1720c6d59bd92bc750549b14fb47ec65809` (`Create Codex-only replication setup scaffold`). On 2026-09-16 at 20:43 Europe/Paris, `git clone --no-hardlinks repo setup-audit-ae51f17` created an independent clone beside the repository. Its HEAD matched that exact commit. From that clone, `corepack pnpm@10.11.0 install --frozen-lockfile && corepack pnpm@10.11.0 check` exited 0: 112 packages installed from the existing pnpm store, no copied `node_modules`, all 47 tests passed and `git status --short` was empty. The esbuild install-script warning remained non-blocking; Vitest exercised its installed binary. This follow-up changes only this acceptance record. Local audit clones are retained outside the repository and are not delivery files.
 
 Before implementation, Antoine must establish evidence-backed target settings, catalogue/seed, executable discovery fixtures and contract suitability; record 2–4 candidate replication approaches in `WRITEUP.md`; and prepare the separate Woo reference measurements, including a lab-only two-coupon scenario. No merchant configuration was inferred during setup.
 
