@@ -1,0 +1,90 @@
+{
+  "observation_date": "2026-09-16",
+  "source": "https://www.latelierdescafes.com/wp-json/wc/store/v1/cart",
+  "units": {
+    "amounts": "integer minor units unless explicitly suffixed _ttc_eur",
+    "currency_code": "EUR",
+    "currency_minor_unit": 2,
+    "raw_price_precision": 6
+  },
+  "cafe_sans_coupon": {
+    "recipe": [
+      {
+        "name": "Café Découverte",
+        "variant": "250g / Café en grains (non moulu)",
+        "quantity": 1,
+        "weight_g": 250
+      }
+    ],
+    "line": {
+      "subtotal_ex_tax": 946,
+      "subtotal_tax": 52,
+      "total_ex_tax": 946,
+      "total_tax": 52
+    },
+    "tax_lines": [{"rate": "5.5%", "price": 52}],
+    "total_price": 998,
+    "total_ttc_eur": "9.98"
+  },
+  "cafe_avec_coupon_hors_port": {
+    "coupon": {
+      "code": "decouverte10",
+      "discount_type": "percent",
+      "discount_ex_tax": 95,
+      "discount_tax": 5,
+      "discount_ttc_eur": "1.00"
+    },
+    "line_after_discount": {
+      "total_ex_tax": 851,
+      "total_tax": 47
+    },
+    "total_price": 898,
+    "total_ttc_eur": "8.98"
+  },
+  "cafe_avec_coupon_fr_75001": {
+    "destination": {"country": "FR", "city": "Paris", "postcode": "75001"},
+    "shipping_options": [
+      {"name": "Colissimo point relais", "price_ex_tax": 640, "tax": 35, "selected": true, "ttc_eur": "6.75"},
+      {"name": "Colissimo à domicile", "price_ex_tax": 846, "tax": 47, "selected": false, "ttc_eur": "8.93"},
+      {"name": "Click & Collect", "price_ex_tax": 0, "tax": 0, "selected": false, "ttc_eur": "0.00"}
+    ],
+    "total_tax": 82,
+    "tax_lines": [{"rate": "5.5%", "price": 82}],
+    "total_price": 1573,
+    "total_ttc_eur": "15.73"
+  },
+  "panier_mixte": {
+    "recipe": [
+      {"name": "Café Découverte", "variant": "250g / Café en grains (non moulu)", "quantity": 1},
+      {"name": "Paquet de 50 spatules", "quantity": 1}
+    ],
+    "items_weight_g": 500,
+    "lines": [
+      {"name": "Café Découverte", "subtotal_ex_tax": 946, "subtotal_tax": 52, "total_ex_tax": 851, "total_tax": 47},
+      {"name": "Paquet de 50 spatules", "subtotal_ex_tax": 125, "subtotal_tax": 25, "total_ex_tax": 125, "total_tax": 25}
+    ],
+    "coupon": {"code": "decouverte10", "discount_ex_tax": 95, "discount_tax": 5, "discount_ttc_eur": "1.00"},
+    "destination": {"country": "FR", "city": "Paris", "postcode": "75001"},
+    "shipping_options": [
+      {"name": "Colissimo point relais", "price_ex_tax": 746, "tax": 41, "selected": true, "ttc_eur": "7.87"},
+      {"name": "Colissimo à domicile", "price_ex_tax": 946, "tax": 52, "selected": false, "ttc_eur": "9.98"},
+      {"name": "Click & Collect", "price_ex_tax": 0, "tax": 0, "selected": false, "ttc_eur": "0.00"}
+    ],
+    "tax_lines": [
+      {"rate": "5.5%", "price": 88},
+      {"rate": "20%", "price": 25}
+    ],
+    "total_tax": 113,
+    "total_price": 1835,
+    "total_ttc_eur": "18.35"
+  },
+  "rejeu_independant": {
+    "new_session_initial_items_count": 0,
+    "recipe": "identical to panier_mixte",
+    "comparison_scope": "products, variants, quantities, line amounts, coupon amounts, taxes, shipping options, selected rate, destination and grand total; session identifiers excluded",
+    "differences": [],
+    "total_price": 1835,
+    "total_ttc_eur": "18.35"
+  },
+  "redaction": "No cookies, tokens, personal identity or session/cart identifiers retained."
+}

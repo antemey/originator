@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Explicit seed v1",
+  "description": "No merchant configuration is supplied at setup. Scalar settings require evidence and engine support before use.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "configured": {
+      "type": "boolean"
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "country": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "role": {
+          "const": "guest"
+        },
+        "currency": {
+          "const": "EUR"
+        },
+        "currency_minor_unit": {
+          "const": 2
+        },
+        "prices_include_tax": {
+          "type": "boolean"
+        }
+      },
+      "required": ["country", "role", "currency", "currency_minor_unit"]
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "variant": {
+            "type": "string",
+            "minLength": 1
+          },
+          "unit_price": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "tax_class": {
+            "type": "string",
+            "minLength": 1
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": {
+              "type": ["string", "number", "boolean"]
+            }
+          }
+        },
+        "required": ["ref", "unit_price", "tax_class", "settings"]
+      }
+    },
+    "coupons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "const": "percent"
+          },
+          "amount": {
+            "type": "string",
+            "pattern": "^\\d+(?:\\.\\d+)?$"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": {
+              "type": ["string", "number", "boolean"]
+            }
+          }
+        },
+        "required": ["code", "type", "amount", "settings"]
+      }
+    },
+    "settings": {
+      "type": "object",
+      "additionalProperties": {
+        "type": ["string", "number", "boolean"]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "configured",
+    "products",
+    "coupons",
+    "settings"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "configured": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "required": ["context"]
+      },
+      "else": {
+        "properties": {
+          "products": {
+            "maxItems": 0
+          },
+          "coupons": {
+            "maxItems": 0
+          },
+          "settings": {
+            "maxProperties": 0
+          }
+        },
+        "not": {
+          "required": ["context"]
+        }
+      }
+    }
+  ]
+}

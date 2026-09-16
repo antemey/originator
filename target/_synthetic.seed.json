@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "configured": true,
+  "context": {
+    "country": "FR",
+    "role": "guest",
+    "currency": "EUR",
+    "currency_minor_unit": 2
+  },
+  "products": [
+    {
+      "ref": "SYNTHETIC-ITEM",
+      "unit_price": 1234,
+      "tax_class": "synthetic",
+      "settings": {}
+    }
+  ],
+  "coupons": [],
+  "settings": {}
+}

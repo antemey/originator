@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "_example",
+  "provenance": "synthetic",
+  "source": {
+    "date": "2026-09-16T00:00:00Z",
+    "action_channel": "synthetic tooling only"
+  },
+  "context": {
+    "country": "FR",
+    "role": "guest",
+    "currency": "EUR",
+    "currency_minor_unit": 2
+  },
+  "seed_file": "target/_synthetic.seed.json",
+  "actions": [
+    {
+      "type": "add",
+      "ref": "SYNTHETIC-ITEM",
+      "qty": 1
+    }
+  ],
+  "expected": {
+    "lines": [],
+    "coupons": [],
+    "totals": {
+      "total_items": 0,
+      "total_items_tax": 0,
+      "total_discount": 0,
+      "total_discount_tax": 0
+    },
+    "decisions": [
+      {
+        "action_index": 0,
+        "accepted": false,
+        "code": "NOT_IMPLEMENTED"
+      }
+    ]
+  },
+  "checkpoints": [
+    {
+      "after_action": 0,
+      "expected": {
+        "lines": [],
+        "coupons": [],
+        "totals": {
+          "total_items": 0,
+          "total_items_tax": 0,
+          "total_discount": 0,
+          "total_discount_tax": 0
+        }
+      }
+    }
+  ],
+  "notes": "Synthetic stub contract example. Not an observed cart or evidence of business fidelity."
+}

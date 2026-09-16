@@ -1,0 +1,29 @@
+# Generated-template input for use-role.sh; no personal paths.
+approval_policy = "never"
+default_permissions = "impl"
+web_search = "disabled"
+
+[features]
+hooks = true
+multi_agent = false
+memories = false
+
+[permissions.impl]
+description = "Implementation role; frozen evidence and controls"
+
+[permissions.impl.filesystem]
+":root" = "read"
+":tmpdir" = "write"
+"__REPO__/tests" = "write"
+"__REPO__/ai/traces" = "write"
+"__REPO__/ai/traces/discovery" = "read"
+"__REPO__/node_modules/.vite" = "write"
+"__REPO__/node_modules/.vite-temp" = "write"
+"__REPO__/fixtures/held-out" = "deny"
+"__HELDOUT__" = "deny"
+"__REPO__/src" = "write"
+"__REPO__/src/engine/contract.ts" = "read"
+"__REPO__/woo/kernel-model.md" = "write"
+
+[permissions.impl.network]
+enabled = false

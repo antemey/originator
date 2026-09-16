@@ -1,0 +1,31 @@
+{
+  "name": "woo-clone",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.11.0",
+  "engines": {
+    "node": ">=22.16.0 <23"
+  },
+  "scripts": {
+    "postinstall": "corepack enable pnpm --install-directory node_modules/.bin",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check src harness woo tests scripts package.json tsconfig.json biome.json vitest.config.ts .dependency-cruiser.cjs .codex/hooks.json",
+    "lint:fix": "biome check --write src harness woo tests scripts package.json tsconfig.json biome.json vitest.config.ts .dependency-cruiser.cjs .codex/hooks.json",
+    "arch": "depcruise --config .dependency-cruiser.cjs src harness woo target",
+    "test": "vitest run",
+    "fixtures:check": "node --import tsx harness/checksums.ts verify",
+    "fixtures:seal": "node --import tsx harness/checksums.ts write",
+    "scenario": "node --import tsx src/cli.ts",
+    "heldout": "node --import tsx harness/run-heldout.ts",
+    "check": "pnpm typecheck && pnpm lint && pnpm arch && pnpm fixtures:check && pnpm test"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.6",
+    "@types/node": "22.20.3",
+    "dependency-cruiser": "16.10.4",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3",
+    "vitest": "3.2.6"
+  }
+}

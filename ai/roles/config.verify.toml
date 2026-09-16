@@ -1,0 +1,26 @@
+# Generated-template input for use-role.sh; no personal paths.
+approval_policy = "never"
+default_permissions = "verify"
+web_search = "disabled"
+
+[features]
+hooks = true
+multi_agent = false
+memories = false
+
+[permissions.verify]
+description = "Verification role; frozen evidence and controls"
+
+[permissions.verify.filesystem]
+":root" = "read"
+":tmpdir" = "write"
+"__REPO__/tests" = "write"
+"__REPO__/ai/traces" = "write"
+"__REPO__/ai/traces/discovery" = "read"
+"__REPO__/node_modules/.vite" = "write"
+"__REPO__/node_modules/.vite-temp" = "write"
+"__REPO__/fixtures/held-out" = "deny"
+"__HELDOUT__" = "deny"
+
+[permissions.verify.network]
+enabled = false

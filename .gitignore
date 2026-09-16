@@ -1,0 +1,16 @@
+node_modules/
+AGENTS.override.md
+.codex/config.toml
+.delivery/
+.setup-audit/
+research/probes/*
+!research/probes/.gitkeep
+.env
+.env.*
+!.env.example
+*.sql
+*.sql.gz
+.DS_Store
+.cache/
+coverage/
+*.tsbuildinfo

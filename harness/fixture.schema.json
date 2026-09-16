@@ -1,0 +1,387 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Verification fixture v1",
+  "description": "Runtime validation also enforces identity uniqueness, filename agreement, ordered decision indices, checkpoint bounds and resolved seed containment.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$"
+    },
+    "provenance": {
+      "enum": ["target", "lab", "derived", "synthetic"]
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "context": {
+      "$ref": "#/$defs/context"
+    },
+    "seed_file": {
+      "type": "string",
+      "pattern": "^target/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_.-]+\\.json$"
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/action"
+      }
+    },
+    "expected": {
+      "$ref": "#/$defs/projection"
+    },
+    "checkpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "after_action": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "expected": {
+            "$ref": "#/$defs/cart"
+          }
+        },
+        "required": ["after_action", "expected"]
+      }
+    },
+    "notes": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "provenance",
+    "source",
+    "context",
+    "actions",
+    "expected"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "provenance": {
+            "const": "synthetic"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "id": {
+            "pattern": "^_"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "id": {
+            "pattern": "^[^_]"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "country": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "role": {
+          "const": "guest"
+        },
+        "currency": {
+          "const": "EUR"
+        },
+        "currency_minor_unit": {
+          "const": 2
+        },
+        "prices_include_tax": {
+          "type": "boolean"
+        }
+      },
+      "required": ["country", "role", "currency", "currency_minor_unit"]
+    },
+    "line": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "variant": {
+          "type": "string",
+          "minLength": 1
+        },
+        "qty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "line_subtotal": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "line_subtotal_tax": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "line_total": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "line_total_tax": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "ref",
+        "qty",
+        "line_subtotal",
+        "line_subtotal_tax",
+        "line_total",
+        "line_total_tax"
+      ]
+    },
+    "coupon": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "total_discount": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "total_discount_tax": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": ["code", "total_discount", "total_discount_tax"]
+    },
+    "totals": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "total_items": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "total_items_tax": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "total_discount": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "total_discount_tax": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "total_items",
+        "total_items_tax",
+        "total_discount",
+        "total_discount_tax"
+      ]
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action_index": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "accepted": {
+          "type": "boolean"
+        },
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": ["action_index", "accepted"]
+    },
+    "cart": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/line"
+          }
+        },
+        "coupons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/coupon"
+          }
+        },
+        "totals": {
+          "$ref": "#/$defs/totals"
+        }
+      },
+      "required": ["lines", "coupons", "totals"]
+    },
+    "projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/line"
+          }
+        },
+        "coupons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/coupon"
+          }
+        },
+        "totals": {
+          "$ref": "#/$defs/totals"
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/decision"
+          }
+        }
+      },
+      "required": ["lines", "coupons", "totals", "decisions"]
+    },
+    "action": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "enum": ["add", "set_qty"]
+            },
+            "ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "variant": {
+              "type": "string",
+              "minLength": 1
+            },
+            "qty": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": ["type", "ref", "qty"]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "remove"
+            },
+            "ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "variant": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": ["type", "ref"]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "enum": ["apply_coupon", "remove_coupon"]
+            },
+            "code": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": ["type", "code"]
+        }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://"
+        },
+        "capture_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "woo_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "extensions_detected": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "action_channel": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": ["date"]
+    }
+  }
+}

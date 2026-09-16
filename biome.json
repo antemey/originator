@@ -1,0 +1,29 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.2.6/schema.json",
+  "files": {
+    "includes": [
+      "**",
+      "!!fixtures",
+      "!!target/*.json",
+      "!!ai/traces",
+      "!!ai/prompts/setup.md",
+      "!!research/probes",
+      "!!.setup-audit",
+      "!!.delivery",
+      "!!.codex/config.toml",
+      "!!AGENTS.override.md",
+      "!!pnpm-lock.yaml"
+    ]
+  },
+  "formatter": { "indentStyle": "space", "indentWidth": 2 },
+  "javascript": {
+    "formatter": { "quoteStyle": "single", "semicolons": "always" }
+  },
+  "linter": {
+    "rules": {
+      "recommended": true,
+      "suspicious": { "noExplicitAny": "error" },
+      "style": { "noNonNullAssertion": "error" }
+    }
+  }
+}
