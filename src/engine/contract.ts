@@ -13,7 +13,9 @@ export type Settings = Record<string, string | number | boolean>;
 export interface Product {
   ref: string;
   variant?: string;
-  unit_price: MinorUnits;
+  // Exact source units, scaled by 10 ** price_precision; not output cents.
+  unit_price: number;
+  price_precision: 2 | 6;
   tax_class: string;
   settings: Settings;
 }

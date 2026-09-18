@@ -1,0 +1,851 @@
+{
+  "source": "https://www.latelierdescafes.com/wp-json/wc/store/v1/cart",
+  "provenance": "target",
+  "context": {
+    "country": "FR",
+    "city": "Paris",
+    "postcode": "75001",
+    "role": "guest",
+    "currency": "EUR"
+  },
+  "redaction": "Headers and authorization values excluded. Address and shipping-rate payloads omitted. Item keys consistently aliased. Retained monetary strings and merchant messages unchanged.",
+  "records": [
+    {
+      "date": "2026-09-18T11:59:44.376Z",
+      "label": "initial-empty",
+      "endpoint": "",
+      "status": 200,
+      "payload": null,
+      "body": {
+        "items": [],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "0",
+          "total_items_tax": "0",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "0",
+          "total_tax": "0",
+          "tax_lines": [],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ",",
+          "currency_thousand_separator": " ",
+          "currency_prefix": "",
+          "currency_suffix": "€"
+        },
+        "needs_payment": false,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 0,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [
+          "stripe",
+          "paypal"
+        ],
+        "extensions": {
+          "subscriptions": [],
+          "woocommerce-conditional-shipping-and-payments": {
+            "restrictions": {
+              "gateways": {
+                "stripe": {
+                  "is_hidden": false,
+                  "is_excluded": false,
+                  "message": ""
+                },
+                "paypal": {
+                  "is_hidden": false,
+                  "is_excluded": false,
+                  "message": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2026-09-18T11:59:46.336Z",
+      "label": "context",
+      "endpoint": "update-customer",
+      "status": 200,
+      "payload": {},
+      "body": {
+        "items": [],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "0",
+          "total_items_tax": "0",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "0",
+          "total_tax": "0",
+          "tax_lines": [],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ",",
+          "currency_thousand_separator": " ",
+          "currency_prefix": "",
+          "currency_suffix": "€"
+        },
+        "needs_payment": false,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 0,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [
+          "stripe",
+          "paypal"
+        ],
+        "extensions": {
+          "subscriptions": [],
+          "woocommerce-conditional-shipping-and-payments": {
+            "restrictions": {
+              "gateways": {
+                "stripe": {
+                  "is_hidden": false,
+                  "is_excluded": false,
+                  "message": ""
+                },
+                "paypal": {
+                  "is_hidden": false,
+                  "is_excluded": false,
+                  "message": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2026-09-18T11:59:48.803Z",
+      "label": "add-coffee",
+      "endpoint": "add-item",
+      "status": 201,
+      "payload": {
+        "id": 8268,
+        "quantity": 1,
+        "variation": [
+          {
+            "attribute": "pa_mouture",
+            "value": "grains"
+          },
+          {
+            "attribute": "pa_poids",
+            "value": "250-gr"
+          }
+        ]
+      },
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 8268,
+            "type": "variation",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte",
+            "short_description": "",
+            "description": "<p>La participation aux frais de livraison est offerte à partir de 70€ d&rsquo;achat. Sacs à café mono-matière 100% recyclables.<br />\nPrix au kilo : 39,92€</p>",
+            "sku": "",
+            "low_stock_remaining": 0,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "https://www.latelierdescafes.com/nos-cafes/cafe-exception/",
+            "images": [
+              {
+                "id": 28510,
+                "src": "https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B.jpeg",
+                "thumbnail": "https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-450x397.jpeg",
+                "srcset": "https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B.jpeg 1080w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-300x264.jpeg 300w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-1024x903.jpeg 1024w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-768x677.jpeg 768w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-450x397.jpeg 450w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-400x353.jpeg 400w",
+                "sizes": "(max-width: 1080px) 100vw, 1080px",
+                "name": "2F1C082E-6304-4DDC-9042-8FCAE3AD668B",
+                "alt": "café découverte sac compostable"
+              }
+            ],
+            "variation": [
+              {
+                "attribute": "Mouture du café",
+                "value": "Café en grains (non moulu)"
+              },
+              {
+                "attribute": "Quantité de café",
+                "value": "250g"
+              }
+            ],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ",",
+              "currency_thousand_separator": " ",
+              "currency_prefix": "",
+              "currency_suffix": "€",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "946",
+              "line_subtotal_tax": "52",
+              "line_total": "946",
+              "line_total_tax": "52",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ",",
+              "currency_thousand_separator": " ",
+              "currency_prefix": "",
+              "currency_suffix": "€"
+            },
+            "catalog_visibility": "visible",
+            "extensions": {
+              "subscriptions": {
+                "billing_period": null,
+                "billing_interval": null,
+                "subscription_length": null,
+                "trial_length": null,
+                "trial_period": null,
+                "sign_up_fees": null,
+                "sign_up_fees_tax": null,
+                "is_resubscribe": null,
+                "switch_type": null,
+                "synchronization": null
+              },
+              "composites": [],
+              "addons": [],
+              "bundles": []
+            }
+          }
+        ],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "946",
+          "total_items_tax": "52",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": "640",
+          "total_shipping_tax": "35",
+          "total_price": "1673",
+          "total_tax": "87",
+          "tax_lines": [
+            {
+              "name": "TVA 5.5%",
+              "price": "87",
+              "rate": "5.5%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ",",
+          "currency_thousand_separator": " ",
+          "currency_prefix": "",
+          "currency_suffix": "€"
+        },
+        "needs_payment": true,
+        "needs_shipping": true,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": true,
+        "items_count": 1,
+        "items_weight": 250,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [
+          "stripe",
+          "paypal"
+        ],
+        "extensions": {
+          "subscriptions": [],
+          "woocommerce-conditional-shipping-and-payments": {
+            "restrictions": {
+              "gateways": {
+                "stripe": {
+                  "is_hidden": false,
+                  "is_excluded": false,
+                  "message": ""
+                },
+                "paypal": {
+                  "is_hidden": false,
+                  "is_excluded": false,
+                  "message": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2026-09-18T11:59:51.114Z",
+      "label": "add-accessory",
+      "endpoint": "add-item",
+      "status": 201,
+      "payload": {
+        "id": 14708,
+        "quantity": 1
+      },
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 8268,
+            "type": "variation",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte",
+            "short_description": "",
+            "description": "<p>La participation aux frais de livraison est offerte à partir de 70€ d&rsquo;achat. Sacs à café mono-matière 100% recyclables.<br />\nPrix au kilo : 39,92€</p>",
+            "sku": "",
+            "low_stock_remaining": 0,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "https://www.latelierdescafes.com/nos-cafes/cafe-exception/",
+            "images": [
+              {
+                "id": 28510,
+                "src": "https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B.jpeg",
+                "thumbnail": "https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-450x397.jpeg",
+                "srcset": "https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B.jpeg 1080w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-300x264.jpeg 300w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-1024x903.jpeg 1024w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-768x677.jpeg 768w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-450x397.jpeg 450w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-400x353.jpeg 400w",
+                "sizes": "(max-width: 1080px) 100vw, 1080px",
+                "name": "2F1C082E-6304-4DDC-9042-8FCAE3AD668B",
+                "alt": "café découverte sac compostable"
+              }
+            ],
+            "variation": [
+              {
+                "attribute": "Mouture du café",
+                "value": "Café en grains (non moulu)"
+              },
+              {
+                "attribute": "Quantité de café",
+                "value": "250g"
+              }
+            ],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ",",
+              "currency_thousand_separator": " ",
+              "currency_prefix": "",
+              "currency_suffix": "€",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "946",
+              "line_subtotal_tax": "52",
+              "line_total": "946",
+              "line_total_tax": "52",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ",",
+              "currency_thousand_separator": " ",
+              "currency_prefix": "",
+              "currency_suffix": "€"
+            },
+            "catalog_visibility": "visible",
+            "extensions": {
+              "subscriptions": {
+                "billing_period": null,
+                "billing_interval": null,
+                "subscription_length": null,
+                "trial_length": null,
+                "trial_period": null,
+                "sign_up_fees": null,
+                "sign_up_fees_tax": null,
+                "is_resubscribe": null,
+                "switch_type": null,
+                "synchronization": null
+              },
+              "composites": [],
+              "addons": [],
+              "bundles": []
+            }
+          },
+          {
+            "key": "item-2",
+            "id": 14708,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 9999,
+              "multiple_of": 1,
+              "editable": true
+            },
+            "name": "Paquet de 50 spatules",
+            "short_description": "<p>Spatules pour le café en bois responsable</p>\n<p>1,50€ le paquet</p>",
+            "description": "<p>Paquet de 50 spatules en <a href=\"https://www.wwf.fr/champs-daction/foret/approvisionnement-responsable/bois\" target=\"_blank\" rel=\"noopener\">bois responsable</a> 100% non polluantes et issues de forêts gérées pour une exploitation durable et écologique.</p>\n<p>Elles sont parfaites avec nos <a href=\"https://www.latelierdescafes.com/accessoires/gobelets-cafe-biodegradables/\" rel=\"noopener\">gobelets pour le café</a> en carton 100% biodégradables.</p>\n<p>Ces spatules sont 100% non polluantes et issues de forêts gérées pour une exploitation durable et écologique.<br />\nElles peuvent servir d&rsquo;agitateurs café ou de cuillères à glace.</p>",
+            "sku": "",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": false,
+            "permalink": "https://www.latelierdescafes.com/accessoires/paquet-de-50-spatules-bois-responsable/",
+            "images": [
+              {
+                "id": 21914,
+                "src": "https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules.jpg",
+                "thumbnail": "https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules-450x450.jpg",
+                "srcset": "https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules.jpg 1024w, https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules-300x300.jpg 300w, https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules-150x150.jpg 150w, https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules-768x768.jpg 768w, https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules-450x450.jpg 450w, https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules-400x400.jpg 400w, https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules-100x100.jpg 100w",
+                "sizes": "(max-width: 1024px) 100vw, 1024px",
+                "name": "Spatules",
+                "alt": "spatule en bois responsable"
+              }
+            ],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "150",
+              "regular_price": "150",
+              "sale_price": "150",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ",",
+              "currency_thousand_separator": " ",
+              "currency_prefix": "",
+              "currency_suffix": "€",
+              "raw_prices": {
+                "precision": 6,
+                "price": "1500000",
+                "regular_price": "1500000",
+                "sale_price": "1500000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "125",
+              "line_subtotal_tax": "25",
+              "line_total": "125",
+              "line_total_tax": "25",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ",",
+              "currency_thousand_separator": " ",
+              "currency_prefix": "",
+              "currency_suffix": "€"
+            },
+            "catalog_visibility": "visible",
+            "extensions": {
+              "subscriptions": {
+                "billing_period": null,
+                "billing_interval": null,
+                "subscription_length": null,
+                "trial_length": null,
+                "trial_period": null,
+                "sign_up_fees": null,
+                "sign_up_fees_tax": null,
+                "is_resubscribe": null,
+                "switch_type": null,
+                "synchronization": null
+              },
+              "composites": [],
+              "addons": [],
+              "bundles": []
+            }
+          }
+        ],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "1071",
+          "total_items_tax": "77",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": "746",
+          "total_shipping_tax": "41",
+          "total_price": "1935",
+          "total_tax": "118",
+          "tax_lines": [
+            {
+              "name": "TVA 5.5%",
+              "price": "93",
+              "rate": "5.5%"
+            },
+            {
+              "name": "TVA 20%",
+              "price": "25",
+              "rate": "20%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ",",
+          "currency_thousand_separator": " ",
+          "currency_prefix": "",
+          "currency_suffix": "€"
+        },
+        "needs_payment": true,
+        "needs_shipping": true,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": true,
+        "items_count": 2,
+        "items_weight": 500,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [
+          "stripe",
+          "paypal"
+        ],
+        "extensions": {
+          "subscriptions": [],
+          "woocommerce-conditional-shipping-and-payments": {
+            "restrictions": {
+              "gateways": {
+                "stripe": {
+                  "is_hidden": false,
+                  "is_excluded": false,
+                  "message": ""
+                },
+                "paypal": {
+                  "is_hidden": false,
+                  "is_excluded": false,
+                  "message": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "date": "2026-09-18T11:59:53.635Z",
+      "label": "apply-decouverte10",
+      "endpoint": "apply-coupon",
+      "status": 200,
+      "payload": {
+        "code": "DECOUVERTE10"
+      },
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 8268,
+            "type": "variation",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte",
+            "short_description": "",
+            "description": "<p>La participation aux frais de livraison est offerte à partir de 70€ d&rsquo;achat. Sacs à café mono-matière 100% recyclables.<br />\nPrix au kilo : 39,92€</p>",
+            "sku": "",
+            "low_stock_remaining": 0,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "https://www.latelierdescafes.com/nos-cafes/cafe-exception/",
+            "images": [
+              {
+                "id": 28510,
+                "src": "https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B.jpeg",
+                "thumbnail": "https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-450x397.jpeg",
+                "srcset": "https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B.jpeg 1080w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-300x264.jpeg 300w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-1024x903.jpeg 1024w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-768x677.jpeg 768w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-450x397.jpeg 450w, https://www.latelierdescafes.com/wp-content/uploads/2017/02/2F1C082E-6304-4DDC-9042-8FCAE3AD668B-400x353.jpeg 400w",
+                "sizes": "(max-width: 1080px) 100vw, 1080px",
+                "name": "2F1C082E-6304-4DDC-9042-8FCAE3AD668B",
+                "alt": "café découverte sac compostable"
+              }
+            ],
+            "variation": [
+              {
+                "attribute": "Mouture du café",
+                "value": "Café en grains (non moulu)"
+              },
+              {
+                "attribute": "Quantité de café",
+                "value": "250g"
+              }
+            ],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ",",
+              "currency_thousand_separator": " ",
+              "currency_prefix": "",
+              "currency_suffix": "€",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "946",
+              "line_subtotal_tax": "52",
+              "line_total": "851",
+              "line_total_tax": "47",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ",",
+              "currency_thousand_separator": " ",
+              "currency_prefix": "",
+              "currency_suffix": "€"
+            },
+            "catalog_visibility": "visible",
+            "extensions": {
+              "subscriptions": {
+                "billing_period": null,
+                "billing_interval": null,
+                "subscription_length": null,
+                "trial_length": null,
+                "trial_period": null,
+                "sign_up_fees": null,
+                "sign_up_fees_tax": null,
+                "is_resubscribe": null,
+                "switch_type": null,
+                "synchronization": null
+              },
+              "composites": [],
+              "addons": [],
+              "bundles": []
+            }
+          },
+          {
+            "key": "item-2",
+            "id": 14708,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 9999,
+              "multiple_of": 1,
+              "editable": true
+            },
+            "name": "Paquet de 50 spatules",
+            "short_description": "<p>Spatules pour le café en bois responsable</p>\n<p>1,50€ le paquet</p>",
+            "description": "<p>Paquet de 50 spatules en <a href=\"https://www.wwf.fr/champs-daction/foret/approvisionnement-responsable/bois\" target=\"_blank\" rel=\"noopener\">bois responsable</a> 100% non polluantes et issues de forêts gérées pour une exploitation durable et écologique.</p>\n<p>Elles sont parfaites avec nos <a href=\"https://www.latelierdescafes.com/accessoires/gobelets-cafe-biodegradables/\" rel=\"noopener\">gobelets pour le café</a> en carton 100% biodégradables.</p>\n<p>Ces spatules sont 100% non polluantes et issues de forêts gérées pour une exploitation durable et écologique.<br />\nElles peuvent servir d&rsquo;agitateurs café ou de cuillères à glace.</p>",
+            "sku": "",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": false,
+            "permalink": "https://www.latelierdescafes.com/accessoires/paquet-de-50-spatules-bois-responsable/",
+            "images": [
+              {
+                "id": 21914,
+                "src": "https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules.jpg",
+                "thumbnail": "https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules-450x450.jpg",
+                "srcset": "https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules.jpg 1024w, https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules-300x300.jpg 300w, https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules-150x150.jpg 150w, https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules-768x768.jpg 768w, https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules-450x450.jpg 450w, https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules-400x400.jpg 400w, https://www.latelierdescafes.com/wp-content/uploads/2019/11/Spatules-100x100.jpg 100w",
+                "sizes": "(max-width: 1024px) 100vw, 1024px",
+                "name": "Spatules",
+                "alt": "spatule en bois responsable"
+              }
+            ],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "150",
+              "regular_price": "150",
+              "sale_price": "150",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ",",
+              "currency_thousand_separator": " ",
+              "currency_prefix": "",
+              "currency_suffix": "€",
+              "raw_prices": {
+                "precision": 6,
+                "price": "1500000",
+                "regular_price": "1500000",
+                "sale_price": "1500000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "125",
+              "line_subtotal_tax": "25",
+              "line_total": "125",
+              "line_total_tax": "25",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ",",
+              "currency_thousand_separator": " ",
+              "currency_prefix": "",
+              "currency_suffix": "€"
+            },
+            "catalog_visibility": "visible",
+            "extensions": {
+              "subscriptions": {
+                "billing_period": null,
+                "billing_interval": null,
+                "subscription_length": null,
+                "trial_length": null,
+                "trial_period": null,
+                "sign_up_fees": null,
+                "sign_up_fees_tax": null,
+                "is_resubscribe": null,
+                "switch_type": null,
+                "synchronization": null
+              },
+              "composites": [],
+              "addons": [],
+              "bundles": []
+            }
+          }
+        ],
+        "coupons": [
+          {
+            "code": "decouverte10",
+            "discount_type": "percent",
+            "totals": {
+              "total_discount": "95",
+              "total_discount_tax": "5",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ",",
+              "currency_thousand_separator": " ",
+              "currency_prefix": "",
+              "currency_suffix": "€"
+            }
+          }
+        ],
+        "fees": [],
+        "totals": {
+          "total_items": "1071",
+          "total_items_tax": "77",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "95",
+          "total_discount_tax": "5",
+          "total_shipping": "746",
+          "total_shipping_tax": "41",
+          "total_price": "1835",
+          "total_tax": "113",
+          "tax_lines": [
+            {
+              "name": "TVA 5.5%",
+              "price": "88",
+              "rate": "5.5%"
+            },
+            {
+              "name": "TVA 20%",
+              "price": "25",
+              "rate": "20%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ",",
+          "currency_thousand_separator": " ",
+          "currency_prefix": "",
+          "currency_suffix": "€"
+        },
+        "needs_payment": true,
+        "needs_shipping": true,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": true,
+        "items_count": 2,
+        "items_weight": 500,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [
+          "stripe",
+          "paypal"
+        ],
+        "extensions": {
+          "subscriptions": [],
+          "woocommerce-conditional-shipping-and-payments": {
+            "restrictions": {
+              "gateways": {
+                "stripe": {
+                  "is_hidden": false,
+                  "is_excluded": false,
+                  "message": ""
+                },
+                "paypal": {
+                  "is_hidden": false,
+                  "is_excluded": false,
+                  "message": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

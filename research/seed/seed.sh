@@ -1,4 +1,7 @@
 #!/bin/sh
 set -eu
-printf '%s\n' 'NOT IMPLEMENTED: operator must install the pinned WooCommerce version and build a separate lab seed with two combinable percentage coupons.' >&2
-exit 1
+# Run from repo/. The marked local WordPress site and pinned Woo plugin must exist.
+mode="${1:-mirror}"
+case "$mode" in mirror|interaction) ;; *) exit 2 ;; esac
+docker compose --env-file research/.env -f research/compose.yml exec -T web \
+  php /dev/stdin "$mode" < research/seed/configure.php

@@ -1,0 +1,1880 @@
+{
+  "source": "http://127.0.0.1:8088/?rest_route=/wc/store/v1/cart",
+  "provenance": "lab",
+  "woo_version": "10.1.2",
+  "mode": "interaction",
+  "context": {
+    "country": "FR",
+    "city": "Paris",
+    "postcode": "75001",
+    "role": "guest",
+    "currency": "EUR"
+  },
+  "redaction": "Headers and authorization values excluded. Addresses and shipping-rate payloads omitted. Item keys consistently aliased. Retained monetary strings unchanged.",
+  "records": [
+    {
+      "date": "2026-09-18T12:04:42.852Z",
+      "label": "initial-empty",
+      "endpoint": "",
+      "status": 200,
+      "payload": null,
+      "body": {
+        "items": [],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "0",
+          "total_items_tax": "0",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "0",
+          "total_tax": "0",
+          "tax_lines": [],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": false,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 0,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:04:42.893Z",
+      "label": "context",
+      "endpoint": "update-customer",
+      "status": 200,
+      "payload": {},
+      "body": {
+        "items": [],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "0",
+          "total_items_tax": "0",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "0",
+          "total_tax": "0",
+          "tax_lines": [],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": false,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 0,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:04:43.200Z",
+      "label": "context-persisted",
+      "endpoint": "",
+      "status": 200,
+      "payload": null,
+      "body": {
+        "items": [],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "0",
+          "total_items_tax": "0",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "0",
+          "total_tax": "0",
+          "tax_lines": [],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": false,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 0,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:04:43.239Z",
+      "label": "add-coffee",
+      "endpoint": "add-item",
+      "status": 201,
+      "payload": {
+        "id": 10,
+        "quantity": 1
+      },
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 10,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte — 250g / Café en grains (non moulu)",
+            "short_description": "",
+            "description": "",
+            "sku": "coffee-250g-grains",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "http://127.0.0.1:8088/?product=cafe-decouverte-250g-cafe-en-grains-non-moulu",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "946",
+              "line_subtotal_tax": "52",
+              "line_total": "946",
+              "line_total_tax": "52",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          }
+        ],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "946",
+          "total_items_tax": "52",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "998",
+          "total_tax": "52",
+          "tax_lines": [
+            {
+              "name": "VAT 5.5000",
+              "price": "52",
+              "rate": "5.5%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": true,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 1,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:04:43.549Z",
+      "label": "add-coffee-persisted",
+      "endpoint": "",
+      "status": 200,
+      "payload": null,
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 10,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte — 250g / Café en grains (non moulu)",
+            "short_description": "",
+            "description": "",
+            "sku": "coffee-250g-grains",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "http://127.0.0.1:8088/?product=cafe-decouverte-250g-cafe-en-grains-non-moulu",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "946",
+              "line_subtotal_tax": "52",
+              "line_total": "946",
+              "line_total_tax": "52",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          }
+        ],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "946",
+          "total_items_tax": "52",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "998",
+          "total_tax": "52",
+          "tax_lines": [
+            {
+              "name": "VAT 5.5000",
+              "price": "52",
+              "rate": "5.5%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": true,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 1,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:04:43.589Z",
+      "label": "add-accessory",
+      "endpoint": "add-item",
+      "status": 201,
+      "payload": {
+        "id": 11,
+        "quantity": 1
+      },
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 10,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte — 250g / Café en grains (non moulu)",
+            "short_description": "",
+            "description": "",
+            "sku": "coffee-250g-grains",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "http://127.0.0.1:8088/?product=cafe-decouverte-250g-cafe-en-grains-non-moulu",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "946",
+              "line_subtotal_tax": "52",
+              "line_total": "946",
+              "line_total_tax": "52",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          },
+          {
+            "key": "item-2",
+            "id": 11,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 9999,
+              "multiple_of": 1,
+              "editable": true
+            },
+            "name": "Paquet de 50 spatules",
+            "short_description": "",
+            "description": "",
+            "sku": "spatules",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": false,
+            "permalink": "http://127.0.0.1:8088/?product=paquet-de-50-spatules",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "150",
+              "regular_price": "150",
+              "sale_price": "150",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "1500000",
+                "regular_price": "1500000",
+                "sale_price": "1500000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "125",
+              "line_subtotal_tax": "25",
+              "line_total": "125",
+              "line_total_tax": "25",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          }
+        ],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "1071",
+          "total_items_tax": "77",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "1148",
+          "total_tax": "77",
+          "tax_lines": [
+            {
+              "name": "VAT 5.5000",
+              "price": "52",
+              "rate": "5.5%"
+            },
+            {
+              "name": "VAT 20.0000",
+              "price": "25",
+              "rate": "20%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": true,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 2,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:04:43.899Z",
+      "label": "add-accessory-persisted",
+      "endpoint": "",
+      "status": 200,
+      "payload": null,
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 10,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte — 250g / Café en grains (non moulu)",
+            "short_description": "",
+            "description": "",
+            "sku": "coffee-250g-grains",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "http://127.0.0.1:8088/?product=cafe-decouverte-250g-cafe-en-grains-non-moulu",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "946",
+              "line_subtotal_tax": "52",
+              "line_total": "946",
+              "line_total_tax": "52",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          },
+          {
+            "key": "item-2",
+            "id": 11,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 9999,
+              "multiple_of": 1,
+              "editable": true
+            },
+            "name": "Paquet de 50 spatules",
+            "short_description": "",
+            "description": "",
+            "sku": "spatules",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": false,
+            "permalink": "http://127.0.0.1:8088/?product=paquet-de-50-spatules",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "150",
+              "regular_price": "150",
+              "sale_price": "150",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "1500000",
+                "regular_price": "1500000",
+                "sale_price": "1500000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "125",
+              "line_subtotal_tax": "25",
+              "line_total": "125",
+              "line_total_tax": "25",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          }
+        ],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "1071",
+          "total_items_tax": "77",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "1148",
+          "total_tax": "77",
+          "tax_lines": [
+            {
+              "name": "VAT 5.5000",
+              "price": "52",
+              "rate": "5.5%"
+            },
+            {
+              "name": "VAT 20.0000",
+              "price": "25",
+              "rate": "20%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": true,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 2,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:04:43.937Z",
+      "label": "apply-decouverte10",
+      "endpoint": "apply-coupon",
+      "status": 200,
+      "payload": {
+        "code": "DECOUVERTE10"
+      },
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 10,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte — 250g / Café en grains (non moulu)",
+            "short_description": "",
+            "description": "",
+            "sku": "coffee-250g-grains",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "http://127.0.0.1:8088/?product=cafe-decouverte-250g-cafe-en-grains-non-moulu",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "946",
+              "line_subtotal_tax": "52",
+              "line_total": "851",
+              "line_total_tax": "47",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          },
+          {
+            "key": "item-2",
+            "id": 11,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 9999,
+              "multiple_of": 1,
+              "editable": true
+            },
+            "name": "Paquet de 50 spatules",
+            "short_description": "",
+            "description": "",
+            "sku": "spatules",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": false,
+            "permalink": "http://127.0.0.1:8088/?product=paquet-de-50-spatules",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "150",
+              "regular_price": "150",
+              "sale_price": "150",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "1500000",
+                "regular_price": "1500000",
+                "sale_price": "1500000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "125",
+              "line_subtotal_tax": "25",
+              "line_total": "125",
+              "line_total_tax": "25",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          }
+        ],
+        "coupons": [
+          {
+            "code": "decouverte10",
+            "discount_type": "percent",
+            "totals": {
+              "total_discount": "95",
+              "total_discount_tax": "5",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            }
+          }
+        ],
+        "fees": [],
+        "totals": {
+          "total_items": "1071",
+          "total_items_tax": "77",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "95",
+          "total_discount_tax": "5",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "1048",
+          "total_tax": "72",
+          "tax_lines": [
+            {
+              "name": "VAT 5.5000",
+              "price": "47",
+              "rate": "5.5%"
+            },
+            {
+              "name": "VAT 20.0000",
+              "price": "25",
+              "rate": "20%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": true,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 2,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:04:44.250Z",
+      "label": "apply-decouverte10-persisted",
+      "endpoint": "",
+      "status": 200,
+      "payload": null,
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 10,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte — 250g / Café en grains (non moulu)",
+            "short_description": "",
+            "description": "",
+            "sku": "coffee-250g-grains",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "http://127.0.0.1:8088/?product=cafe-decouverte-250g-cafe-en-grains-non-moulu",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "946",
+              "line_subtotal_tax": "52",
+              "line_total": "851",
+              "line_total_tax": "47",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          },
+          {
+            "key": "item-2",
+            "id": 11,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 9999,
+              "multiple_of": 1,
+              "editable": true
+            },
+            "name": "Paquet de 50 spatules",
+            "short_description": "",
+            "description": "",
+            "sku": "spatules",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": false,
+            "permalink": "http://127.0.0.1:8088/?product=paquet-de-50-spatules",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "150",
+              "regular_price": "150",
+              "sale_price": "150",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "1500000",
+                "regular_price": "1500000",
+                "sale_price": "1500000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "125",
+              "line_subtotal_tax": "25",
+              "line_total": "125",
+              "line_total_tax": "25",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          }
+        ],
+        "coupons": [
+          {
+            "code": "decouverte10",
+            "discount_type": "percent",
+            "totals": {
+              "total_discount": "95",
+              "total_discount_tax": "5",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            }
+          }
+        ],
+        "fees": [],
+        "totals": {
+          "total_items": "1071",
+          "total_items_tax": "77",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "95",
+          "total_discount_tax": "5",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "1048",
+          "total_tax": "72",
+          "tax_lines": [
+            {
+              "name": "VAT 5.5000",
+              "price": "47",
+              "rate": "5.5%"
+            },
+            {
+              "name": "VAT 20.0000",
+              "price": "25",
+              "rate": "20%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": true,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 2,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:04:44.290Z",
+      "label": "apply-lab20",
+      "endpoint": "apply-coupon",
+      "status": 200,
+      "payload": {
+        "code": "LAB20"
+      },
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 10,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte — 250g / Café en grains (non moulu)",
+            "short_description": "",
+            "description": "",
+            "sku": "coffee-250g-grains",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "http://127.0.0.1:8088/?product=cafe-decouverte-250g-cafe-en-grains-non-moulu",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "946",
+              "line_subtotal_tax": "52",
+              "line_total": "662",
+              "line_total_tax": "36",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          },
+          {
+            "key": "item-2",
+            "id": 11,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 9999,
+              "multiple_of": 1,
+              "editable": true
+            },
+            "name": "Paquet de 50 spatules",
+            "short_description": "",
+            "description": "",
+            "sku": "spatules",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": false,
+            "permalink": "http://127.0.0.1:8088/?product=paquet-de-50-spatules",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "150",
+              "regular_price": "150",
+              "sale_price": "150",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "1500000",
+                "regular_price": "1500000",
+                "sale_price": "1500000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "125",
+              "line_subtotal_tax": "25",
+              "line_total": "125",
+              "line_total_tax": "25",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          }
+        ],
+        "coupons": [
+          {
+            "code": "decouverte10",
+            "discount_type": "percent",
+            "totals": {
+              "total_discount": "95",
+              "total_discount_tax": "5",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            }
+          },
+          {
+            "code": "lab20",
+            "discount_type": "percent",
+            "totals": {
+              "total_discount": "190",
+              "total_discount_tax": "10",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            }
+          }
+        ],
+        "fees": [],
+        "totals": {
+          "total_items": "1071",
+          "total_items_tax": "77",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "284",
+          "total_discount_tax": "16",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "848",
+          "total_tax": "61",
+          "tax_lines": [
+            {
+              "name": "VAT 5.5000",
+              "price": "36",
+              "rate": "5.5%"
+            },
+            {
+              "name": "VAT 20.0000",
+              "price": "25",
+              "rate": "20%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": true,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 2,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:04:44.602Z",
+      "label": "apply-lab20-persisted",
+      "endpoint": "",
+      "status": 200,
+      "payload": null,
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 10,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte — 250g / Café en grains (non moulu)",
+            "short_description": "",
+            "description": "",
+            "sku": "coffee-250g-grains",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "http://127.0.0.1:8088/?product=cafe-decouverte-250g-cafe-en-grains-non-moulu",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "946",
+              "line_subtotal_tax": "52",
+              "line_total": "662",
+              "line_total_tax": "36",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          },
+          {
+            "key": "item-2",
+            "id": 11,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 9999,
+              "multiple_of": 1,
+              "editable": true
+            },
+            "name": "Paquet de 50 spatules",
+            "short_description": "",
+            "description": "",
+            "sku": "spatules",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": false,
+            "permalink": "http://127.0.0.1:8088/?product=paquet-de-50-spatules",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "150",
+              "regular_price": "150",
+              "sale_price": "150",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "1500000",
+                "regular_price": "1500000",
+                "sale_price": "1500000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "125",
+              "line_subtotal_tax": "25",
+              "line_total": "125",
+              "line_total_tax": "25",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          }
+        ],
+        "coupons": [
+          {
+            "code": "decouverte10",
+            "discount_type": "percent",
+            "totals": {
+              "total_discount": "95",
+              "total_discount_tax": "5",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            }
+          },
+          {
+            "code": "lab20",
+            "discount_type": "percent",
+            "totals": {
+              "total_discount": "190",
+              "total_discount_tax": "10",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            }
+          }
+        ],
+        "fees": [],
+        "totals": {
+          "total_items": "1071",
+          "total_items_tax": "77",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "284",
+          "total_discount_tax": "16",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "848",
+          "total_tax": "61",
+          "tax_lines": [
+            {
+              "name": "VAT 5.5000",
+              "price": "36",
+              "rate": "5.5%"
+            },
+            {
+              "name": "VAT 20.0000",
+              "price": "25",
+              "rate": "20%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": true,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 2,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:04:44.642Z",
+      "label": "remove-lab20",
+      "endpoint": "remove-coupon",
+      "status": 200,
+      "payload": {
+        "code": "LAB20"
+      },
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 10,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte — 250g / Café en grains (non moulu)",
+            "short_description": "",
+            "description": "",
+            "sku": "coffee-250g-grains",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "http://127.0.0.1:8088/?product=cafe-decouverte-250g-cafe-en-grains-non-moulu",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "946",
+              "line_subtotal_tax": "52",
+              "line_total": "851",
+              "line_total_tax": "47",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          },
+          {
+            "key": "item-2",
+            "id": 11,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 9999,
+              "multiple_of": 1,
+              "editable": true
+            },
+            "name": "Paquet de 50 spatules",
+            "short_description": "",
+            "description": "",
+            "sku": "spatules",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": false,
+            "permalink": "http://127.0.0.1:8088/?product=paquet-de-50-spatules",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "150",
+              "regular_price": "150",
+              "sale_price": "150",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "1500000",
+                "regular_price": "1500000",
+                "sale_price": "1500000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "125",
+              "line_subtotal_tax": "25",
+              "line_total": "125",
+              "line_total_tax": "25",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          }
+        ],
+        "coupons": [
+          {
+            "code": "decouverte10",
+            "discount_type": "percent",
+            "totals": {
+              "total_discount": "95",
+              "total_discount_tax": "5",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            }
+          }
+        ],
+        "fees": [],
+        "totals": {
+          "total_items": "1071",
+          "total_items_tax": "77",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "95",
+          "total_discount_tax": "5",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "1048",
+          "total_tax": "72",
+          "tax_lines": [
+            {
+              "name": "VAT 5.5000",
+              "price": "47",
+              "rate": "5.5%"
+            },
+            {
+              "name": "VAT 20.0000",
+              "price": "25",
+              "rate": "20%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": true,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 2,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:04:44.951Z",
+      "label": "remove-lab20-persisted",
+      "endpoint": "",
+      "status": 200,
+      "payload": null,
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 10,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte — 250g / Café en grains (non moulu)",
+            "short_description": "",
+            "description": "",
+            "sku": "coffee-250g-grains",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "http://127.0.0.1:8088/?product=cafe-decouverte-250g-cafe-en-grains-non-moulu",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "946",
+              "line_subtotal_tax": "52",
+              "line_total": "851",
+              "line_total_tax": "47",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          },
+          {
+            "key": "item-2",
+            "id": 11,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 9999,
+              "multiple_of": 1,
+              "editable": true
+            },
+            "name": "Paquet de 50 spatules",
+            "short_description": "",
+            "description": "",
+            "sku": "spatules",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": false,
+            "permalink": "http://127.0.0.1:8088/?product=paquet-de-50-spatules",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "150",
+              "regular_price": "150",
+              "sale_price": "150",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "1500000",
+                "regular_price": "1500000",
+                "sale_price": "1500000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "125",
+              "line_subtotal_tax": "25",
+              "line_total": "125",
+              "line_total_tax": "25",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          }
+        ],
+        "coupons": [
+          {
+            "code": "decouverte10",
+            "discount_type": "percent",
+            "totals": {
+              "total_discount": "95",
+              "total_discount_tax": "5",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            }
+          }
+        ],
+        "fees": [],
+        "totals": {
+          "total_items": "1071",
+          "total_items_tax": "77",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "95",
+          "total_discount_tax": "5",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "1048",
+          "total_tax": "72",
+          "tax_lines": [
+            {
+              "name": "VAT 5.5000",
+              "price": "47",
+              "rate": "5.5%"
+            },
+            {
+              "name": "VAT 20.0000",
+              "price": "25",
+              "rate": "20%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": true,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 2,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    }
+  ]
+}

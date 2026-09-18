@@ -1,0 +1,304 @@
+{
+  "source": "http://127.0.0.1:8088/?rest_route=/wc/store/v1/cart",
+  "provenance": "lab",
+  "woo_version": "10.1.2",
+  "mode": "mirror",
+  "context": {
+    "country": "FR",
+    "city": "Paris",
+    "postcode": "75001",
+    "role": "guest",
+    "currency": "EUR"
+  },
+  "redaction": "Headers and authorization values excluded. Addresses and shipping-rate payloads omitted. Item keys consistently aliased. Retained monetary strings unchanged.",
+  "records": [
+    {
+      "date": "2026-09-18T12:03:23.585Z",
+      "label": "initial-empty",
+      "endpoint": "",
+      "status": 200,
+      "payload": null,
+      "body": {
+        "items": [],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "0",
+          "total_items_tax": "0",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "0",
+          "total_tax": "0",
+          "tax_lines": [],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": false,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 0,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:03:23.626Z",
+      "label": "context",
+      "endpoint": "update-customer",
+      "status": 200,
+      "payload": {},
+      "body": {
+        "items": [],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "0",
+          "total_items_tax": "0",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "0",
+          "total_tax": "0",
+          "tax_lines": [],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": false,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 0,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:03:23.933Z",
+      "label": "context-persisted",
+      "endpoint": "",
+      "status": 200,
+      "payload": null,
+      "body": {
+        "items": [],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "0",
+          "total_items_tax": "0",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "0",
+          "total_tax": "0",
+          "tax_lines": [],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": false,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 0,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:03:23.972Z",
+      "label": "add-coffee",
+      "endpoint": "add-item",
+      "status": 201,
+      "payload": {
+        "id": 10,
+        "quantity": 1
+      },
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 10,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte — 250g / Café en grains (non moulu)",
+            "short_description": "",
+            "description": "",
+            "sku": "coffee-250g-grains",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "http://127.0.0.1:8088/?product=cafe-decouverte-250g-cafe-en-grains-non-moulu",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "946",
+              "line_subtotal_tax": "52",
+              "line_total": "946",
+              "line_total_tax": "52",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          }
+        ],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "946",
+          "total_items_tax": "52",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "998",
+          "total_tax": "52",
+          "tax_lines": [
+            {
+              "name": "VAT 5.5000",
+              "price": "52",
+              "rate": "5.5%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": true,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 1,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:03:24.280Z",
+      "label": "add-coffee-persisted",
+      "endpoint": "",
+      "status": 200,
+      "payload": null,
+      "body": {
+        "items": [],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "0",
+          "total_items_tax": "0",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "0",
+          "total_tax": "0",
+          "tax_lines": [],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": false,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 0,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    }
+  ]
+}

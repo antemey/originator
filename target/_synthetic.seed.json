@@ -12,7 +12,8 @@
       "ref": "SYNTHETIC-ITEM",
       "unit_price": 1234,
       "tax_class": "synthetic",
-      "settings": {}
+      "settings": {},
+      "price_precision": 2
     }
   ],
   "coupons": [],

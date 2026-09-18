@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Explicit seed v1",
-  "description": "No merchant configuration is supplied at setup. Scalar settings require evidence and engine support before use.",
+  "description": "Bounded evidence-backed Woo percent slice. Source prices retain six-decimal precision; output money remains integer cents. Synthetic tooling is separately identified by tax_class=synthetic.",
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -32,7 +32,12 @@
           "type": "boolean"
         }
       },
-      "required": ["country", "role", "currency", "currency_minor_unit"]
+      "required": [
+        "country",
+        "role",
+        "currency",
+        "currency_minor_unit"
+      ]
     },
     "products": {
       "type": "array",
@@ -42,29 +47,50 @@
         "properties": {
           "ref": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "description": "Clone catalogue identifier; maps explicitly to a native product or variation ID."
           },
           "variant": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "description": "Clone variant identifier; only the observed 250g/grains variation is in scope."
           },
           "unit_price": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 10000000000,
+            "description": "Exact nonnegative source units, divided by 10^price_precision to obtain EUR; maps to scaled WC_Product get_price(), not output cents."
           },
           "tax_class": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "description": "Native WC_Product tax class correspondence; standard maps to the empty native class slug."
           },
           "settings": {
             "type": "object",
             "additionalProperties": {
-              "type": ["string", "number", "boolean"]
+              "type": [
+                "string",
+                "number",
+                "boolean"
+              ]
             }
+          },
+          "price_precision": {
+            "enum": [
+              2,
+              6
+            ],
+            "description": "Decimal scale of unit_price. Prepared Woo slice uses 6; legacy synthetic tooling uses 2."
           }
         },
-        "required": ["ref", "unit_price", "tax_class", "settings"]
+        "required": [
+          "ref",
+          "unit_price",
+          "tax_class",
+          "settings",
+          "price_precision"
+        ]
       }
     },
     "coupons": {
@@ -87,17 +113,30 @@
           "settings": {
             "type": "object",
             "additionalProperties": {
-              "type": ["string", "number", "boolean"]
+              "type": [
+                "string",
+                "number",
+                "boolean"
+              ]
             }
           }
         },
-        "required": ["code", "type", "amount", "settings"]
+        "required": [
+          "code",
+          "type",
+          "amount",
+          "settings"
+        ]
       }
     },
     "settings": {
       "type": "object",
       "additionalProperties": {
-        "type": ["string", "number", "boolean"]
+        "type": [
+          "string",
+          "number",
+          "boolean"
+        ]
       }
     }
   },
@@ -118,7 +157,9 @@
         }
       },
       "then": {
-        "required": ["context"]
+        "required": [
+          "context"
+        ]
       },
       "else": {
         "properties": {
@@ -133,8 +174,206 @@
           }
         },
         "not": {
-          "required": ["context"]
+          "required": [
+            "context"
+          ]
         }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "settings": {
+            "properties": {
+              "model": {
+                "const": "woo-percent-v1"
+              }
+            },
+            "required": [
+              "model"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "context": {
+            "properties": {
+              "country": {
+                "const": "FR"
+              },
+              "prices_include_tax": {
+                "const": true
+              }
+            },
+            "required": [
+              "prices_include_tax"
+            ]
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "model",
+              "sequential_discounts",
+              "round_tax_at_subtotal"
+            ],
+            "properties": {
+              "model": {
+                "const": "woo-percent-v1",
+                "description": "Clone identifier for the bounded prepared algorithm family."
+              },
+              "sequential_discounts": {
+                "const": false,
+                "description": "woocommerce_calc_discounts_sequentially=no. No other mode is prepared."
+              },
+              "round_tax_at_subtotal": {
+                "const": false,
+                "description": "woocommerce_tax_round_at_subtotal=no."
+              }
+            }
+          },
+          "products": {
+            "items": {
+              "properties": {
+                "price_precision": {
+                  "const": 6
+                },
+                "settings": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "tax_rate_percent",
+                    "sold_individually",
+                    "max_quantity",
+                    "name",
+                    "native_id"
+                  ],
+                  "properties": {
+                    "tax_rate_percent": {
+                      "enum": [
+                        "5.5",
+                        "20"
+                      ],
+                      "description": "Applicable noncompound WC_Tax rate for FR and this product class."
+                    },
+                    "sold_individually": {
+                      "type": "boolean",
+                      "description": "WC_Product sold_individually."
+                    },
+                    "max_quantity": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 3,
+                      "description": "Clone measurement-domain bound, not a claimed native stock limit."
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Native product/variation name used by observed messages."
+                    },
+                    "native_id": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "description": "Native product or variation ID; identity mapping only."
+                    }
+                  },
+                  "if": {
+                    "properties": {
+                      "sold_individually": {
+                        "const": true
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "max_quantity": {
+                        "const": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "coupons": {
+            "items": {
+              "properties": {
+                "amount": {
+                  "enum": [
+                    "10",
+                    "20"
+                  ]
+                },
+                "settings": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "eligible_ref",
+                    "individual_use"
+                  ],
+                  "properties": {
+                    "eligible_ref": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Clone catalogue ref mapped to WC_Coupon product_ids; candidate restriction, not identification of merchant internals."
+                    },
+                    "individual_use": {
+                      "const": false,
+                      "description": "WC_Coupon individual_use=false."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "configured": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "anyOf": [
+          {
+            "properties": {
+              "settings": {
+                "required": [
+                  "model"
+                ],
+                "properties": {
+                  "model": {
+                    "const": "woo-percent-v1"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "products": {
+                "items": {
+                  "properties": {
+                    "tax_class": {
+                      "const": "synthetic"
+                    }
+                  }
+                }
+              },
+              "coupons": {
+                "maxItems": 0
+              },
+              "settings": {
+                "maxProperties": 0
+              }
+            }
+          }
+        ]
       }
     }
   ]

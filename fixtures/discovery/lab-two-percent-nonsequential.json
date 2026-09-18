@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "id": "lab-two-percent-nonsequential",
+  "provenance": "lab",
+  "source": {
+    "date": "2026-09-18T12:04:43.239Z",
+    "url": "http://127.0.0.1:8088/?rest_route=/wc/store/v1/cart",
+    "capture_hash": "7049a2919f757c6735d726a97a3cea64d2591e84fee71f4678ea9e88bbecc8a5",
+    "action_channel": "Store API POST responses with guest cookie/Nonce session; persisted GET checked after each action",
+    "woo_version": "10.1.2"
+  },
+  "context": {
+    "country": "FR",
+    "role": "guest",
+    "currency": "EUR",
+    "currency_minor_unit": 2,
+    "prices_include_tax": true
+  },
+  "seed_file": "target/lab/two-percent-nonsequential.json",
+  "actions": [
+    {
+      "type": "add",
+      "ref": "cafe-decouverte",
+      "variant": "250g-grains",
+      "qty": 1
+    },
+    {
+      "type": "add",
+      "ref": "spatules",
+      "qty": 1
+    },
+    {
+      "type": "apply_coupon",
+      "code": "DECOUVERTE10"
+    },
+    {
+      "type": "apply_coupon",
+      "code": "LAB20"
+    },
+    {
+      "type": "remove_coupon",
+      "code": "LAB20"
+    }
+  ],
+  "expected": {
+    "lines": [
+      {
+        "ref": "cafe-decouverte",
+        "variant": "250g-grains",
+        "qty": 1,
+        "line_subtotal": 946,
+        "line_subtotal_tax": 52,
+        "line_total": 851,
+        "line_total_tax": 47
+      },
+      {
+        "ref": "spatules",
+        "qty": 1,
+        "line_subtotal": 125,
+        "line_subtotal_tax": 25,
+        "line_total": 125,
+        "line_total_tax": 25
+      }
+    ],
+    "coupons": [
+      {
+        "code": "decouverte10",
+        "total_discount": 95,
+        "total_discount_tax": 5
+      }
+    ],
+    "totals": {
+      "total_items": 1071,
+      "total_items_tax": 77,
+      "total_discount": 95,
+      "total_discount_tax": 5
+    },
+    "decisions": [
+      {
+        "action_index": 0,
+        "accepted": true
+      },
+      {
+        "action_index": 1,
+        "accepted": true
+      },
+      {
+        "action_index": 2,
+        "accepted": true
+      },
+      {
+        "action_index": 3,
+        "accepted": true
+      },
+      {
+        "action_index": 4,
+        "accepted": true
+      }
+    ]
+  },
+  "checkpoints": [
+    {
+      "after_action": 0,
+      "expected": {
+        "lines": [
+          {
+            "ref": "cafe-decouverte",
+            "variant": "250g-grains",
+            "qty": 1,
+            "line_subtotal": 946,
+            "line_subtotal_tax": 52,
+            "line_total": 946,
+            "line_total_tax": 52
+          }
+        ],
+        "coupons": [],
+        "totals": {
+          "total_items": 946,
+          "total_items_tax": 52,
+          "total_discount": 0,
+          "total_discount_tax": 0
+        }
+      }
+    },
+    {
+      "after_action": 1,
+      "expected": {
+        "lines": [
+          {
+            "ref": "cafe-decouverte",
+            "variant": "250g-grains",
+            "qty": 1,
+            "line_subtotal": 946,
+            "line_subtotal_tax": 52,
+            "line_total": 946,
+            "line_total_tax": 52
+          },
+          {
+            "ref": "spatules",
+            "qty": 1,
+            "line_subtotal": 125,
+            "line_subtotal_tax": 25,
+            "line_total": 125,
+            "line_total_tax": 25
+          }
+        ],
+        "coupons": [],
+        "totals": {
+          "total_items": 1071,
+          "total_items_tax": 77,
+          "total_discount": 0,
+          "total_discount_tax": 0
+        }
+      }
+    },
+    {
+      "after_action": 2,
+      "expected": {
+        "lines": [
+          {
+            "ref": "cafe-decouverte",
+            "variant": "250g-grains",
+            "qty": 1,
+            "line_subtotal": 946,
+            "line_subtotal_tax": 52,
+            "line_total": 851,
+            "line_total_tax": 47
+          },
+          {
+            "ref": "spatules",
+            "qty": 1,
+            "line_subtotal": 125,
+            "line_subtotal_tax": 25,
+            "line_total": 125,
+            "line_total_tax": 25
+          }
+        ],
+        "coupons": [
+          {
+            "code": "decouverte10",
+            "total_discount": 95,
+            "total_discount_tax": 5
+          }
+        ],
+        "totals": {
+          "total_items": 1071,
+          "total_items_tax": 77,
+          "total_discount": 95,
+          "total_discount_tax": 5
+        }
+      }
+    },
+    {
+      "after_action": 3,
+      "expected": {
+        "lines": [
+          {
+            "ref": "cafe-decouverte",
+            "variant": "250g-grains",
+            "qty": 1,
+            "line_subtotal": 946,
+            "line_subtotal_tax": 52,
+            "line_total": 662,
+            "line_total_tax": 36
+          },
+          {
+            "ref": "spatules",
+            "qty": 1,
+            "line_subtotal": 125,
+            "line_subtotal_tax": 25,
+            "line_total": 125,
+            "line_total_tax": 25
+          }
+        ],
+        "coupons": [
+          {
+            "code": "decouverte10",
+            "total_discount": 95,
+            "total_discount_tax": 5
+          },
+          {
+            "code": "lab20",
+            "total_discount": 190,
+            "total_discount_tax": 10
+          }
+        ],
+        "totals": {
+          "total_items": 1071,
+          "total_items_tax": 77,
+          "total_discount": 284,
+          "total_discount_tax": 16
+        }
+      }
+    },
+    {
+      "after_action": 4,
+      "expected": {
+        "lines": [
+          {
+            "ref": "cafe-decouverte",
+            "variant": "250g-grains",
+            "qty": 1,
+            "line_subtotal": 946,
+            "line_subtotal_tax": 52,
+            "line_total": 851,
+            "line_total_tax": 47
+          },
+          {
+            "ref": "spatules",
+            "qty": 1,
+            "line_subtotal": 125,
+            "line_subtotal_tax": 25,
+            "line_total": 125,
+            "line_total_tax": 25
+          }
+        ],
+        "coupons": [
+          {
+            "code": "decouverte10",
+            "total_discount": 95,
+            "total_discount_tax": 5
+          }
+        ],
+        "totals": {
+          "total_items": 1071,
+          "total_items_tax": 77,
+          "total_discount": 95,
+          "total_discount_tax": 5
+        }
+      }
+    }
+  ],
+  "notes": "Discovery only. All monetary values directly projected from sanitized responses. Successful decisions use actual 2xx statuses; refusal codes/messages are unchanged. Inclusive input price basis is a candidate seed assumption, not identified merchant configuration."
+}

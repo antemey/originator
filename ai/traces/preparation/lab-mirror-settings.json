@@ -1,0 +1,34 @@
+{
+    "date": "2026-09-18T12:03:20+00:00",
+    "mode": "mirror",
+    "wordpress": "6.8.2",
+    "woocommerce": "10.1.2",
+    "php": "8.2.29",
+    "products": {
+        "coffee-250g-grains": 10,
+        "spatules": 11
+    },
+    "options": {
+        "woocommerce_currency": "EUR",
+        "woocommerce_price_num_decimals": "2",
+        "woocommerce_default_country": "FR",
+        "woocommerce_default_customer_address": "base",
+        "woocommerce_tax_based_on": "shipping",
+        "woocommerce_calc_taxes": "yes",
+        "woocommerce_prices_include_tax": "yes",
+        "woocommerce_tax_round_at_subtotal": "no",
+        "woocommerce_tax_display_shop": "incl",
+        "woocommerce_tax_display_cart": "incl",
+        "woocommerce_calc_discounts_sequentially": "no",
+        "woocommerce_enable_coupons": "yes"
+    },
+    "coupons": {
+        "decouverte10": "10"
+    },
+    "model_assumptions": [
+        "Inclusive entered prices; this is a candidate explanation of the target.",
+        "Product eligibility models the observed two-reference domain; merchant category\/product restriction remains unidentified.",
+        "The single target variation is flattened into a local simple product with an explicit identity mapping.",
+        "No shipping methods, fees, gifts, compound taxes or third product are configured."
+    ]
+}

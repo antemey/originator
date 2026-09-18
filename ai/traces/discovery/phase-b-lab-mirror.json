@@ -1,0 +1,344 @@
+{
+  "source": "http://127.0.0.1:8088/?rest_route=/wc/store/v1/cart",
+  "provenance": "lab",
+  "woo_version": "10.1.2",
+  "mode": "mirror",
+  "context": {
+    "country": "FR",
+    "city": "Paris",
+    "postcode": "75001",
+    "role": "guest",
+    "currency": "EUR"
+  },
+  "redaction": "Headers and authorization values excluded. Addresses and shipping-rate payloads omitted. Item keys consistently aliased. Retained monetary strings unchanged.",
+  "records": [
+    {
+      "date": "2026-09-18T12:01:55.977Z",
+      "label": "initial-empty",
+      "endpoint": "",
+      "status": 200,
+      "payload": null,
+      "body": {
+        "items": [],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "0",
+          "total_items_tax": "0",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "0",
+          "total_tax": "0",
+          "tax_lines": [],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": false,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 0,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:01:56.017Z",
+      "label": "context",
+      "endpoint": "update-customer",
+      "status": 200,
+      "payload": {},
+      "body": {
+        "items": [],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "0",
+          "total_items_tax": "0",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "0",
+          "total_tax": "0",
+          "tax_lines": [],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": false,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 0,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:01:56.051Z",
+      "label": "add-coffee",
+      "endpoint": "add-item",
+      "status": 201,
+      "payload": {
+        "id": 10,
+        "quantity": 1
+      },
+      "body": {
+        "items": [
+          {
+            "key": "item-1",
+            "id": 10,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 1,
+              "multiple_of": 1,
+              "editable": false
+            },
+            "name": "Café Découverte — 250g / Café en grains (non moulu)",
+            "short_description": "",
+            "description": "",
+            "sku": "coffee-250g-grains",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": true,
+            "permalink": "http://127.0.0.1:8088/?product=cafe-decouverte-250g-cafe-en-grains-non-moulu",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "998",
+              "regular_price": "998",
+              "sale_price": "998",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "9980000",
+                "regular_price": "9980000",
+                "sale_price": "9980000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "832",
+              "line_subtotal_tax": "166",
+              "line_total": "832",
+              "line_total_tax": "166",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          }
+        ],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "832",
+          "total_items_tax": "166",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "998",
+          "total_tax": "166",
+          "tax_lines": [
+            {
+              "name": "VAT 20.0000",
+              "price": "166",
+              "rate": "20%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": true,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 1,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:01:56.082Z",
+      "label": "add-accessory",
+      "endpoint": "add-item",
+      "status": 201,
+      "payload": {
+        "id": 11,
+        "quantity": 1
+      },
+      "body": {
+        "items": [
+          {
+            "key": "item-2",
+            "id": 11,
+            "type": "simple",
+            "quantity": 1,
+            "quantity_limits": {
+              "minimum": 1,
+              "maximum": 9999,
+              "multiple_of": 1,
+              "editable": true
+            },
+            "name": "Paquet de 50 spatules",
+            "short_description": "",
+            "description": "",
+            "sku": "spatules",
+            "low_stock_remaining": null,
+            "backorders_allowed": false,
+            "show_backorder_badge": false,
+            "sold_individually": false,
+            "permalink": "http://127.0.0.1:8088/?product=paquet-de-50-spatules",
+            "images": [],
+            "variation": [],
+            "item_data": [],
+            "prices": {
+              "price": "150",
+              "regular_price": "150",
+              "sale_price": "150",
+              "price_range": null,
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": "",
+              "raw_prices": {
+                "precision": 6,
+                "price": "1500000",
+                "regular_price": "1500000",
+                "sale_price": "1500000"
+              }
+            },
+            "totals": {
+              "line_subtotal": "125",
+              "line_subtotal_tax": "25",
+              "line_total": "125",
+              "line_total_tax": "25",
+              "currency_code": "EUR",
+              "currency_symbol": "€",
+              "currency_minor_unit": 2,
+              "currency_decimal_separator": ".",
+              "currency_thousand_separator": ",",
+              "currency_prefix": "€",
+              "currency_suffix": ""
+            },
+            "catalog_visibility": "visible",
+            "extensions": {}
+          }
+        ],
+        "coupons": [],
+        "fees": [],
+        "totals": {
+          "total_items": "125",
+          "total_items_tax": "25",
+          "total_fees": "0",
+          "total_fees_tax": "0",
+          "total_discount": "0",
+          "total_discount_tax": "0",
+          "total_shipping": null,
+          "total_shipping_tax": null,
+          "total_price": "150",
+          "total_tax": "25",
+          "tax_lines": [
+            {
+              "name": "VAT 20.0000",
+              "price": "25",
+              "rate": "20%"
+            }
+          ],
+          "currency_code": "EUR",
+          "currency_symbol": "€",
+          "currency_minor_unit": 2,
+          "currency_decimal_separator": ".",
+          "currency_thousand_separator": ",",
+          "currency_prefix": "€",
+          "currency_suffix": ""
+        },
+        "needs_payment": true,
+        "needs_shipping": false,
+        "payment_requirements": [
+          "products"
+        ],
+        "has_calculated_shipping": false,
+        "items_count": 1,
+        "items_weight": 0,
+        "cross_sells": [],
+        "errors": [],
+        "payment_methods": [],
+        "extensions": {}
+      }
+    },
+    {
+      "date": "2026-09-18T12:01:56.112Z",
+      "label": "apply-decouverte10",
+      "endpoint": "apply-coupon",
+      "status": 400,
+      "payload": {
+        "code": "DECOUVERTE10"
+      },
+      "body": {
+        "code": "woocommerce_rest_cart_coupon_error",
+        "message": "Sorry, coupon &quot;decouverte10&quot; is not applicable to selected products.",
+        "data": {
+          "status": 400
+        }
+      }
+    }
+  ]
+}

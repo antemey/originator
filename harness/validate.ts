@@ -353,13 +353,17 @@ export function validateSeed(input: unknown): asserts input is Seed {
     const product = record(item, 'product');
     keys(
       product,
-      ['ref', 'unit_price', 'tax_class', 'settings'],
+      ['ref', 'unit_price', 'price_precision', 'tax_class', 'settings'],
       ['variant'],
       'product',
     );
     text(product.ref, 'product.ref');
     optionalText(product, ['variant'], 'product');
     integer(product.unit_price, 'product.unit_price', 0);
+    if (product.unit_price > 10_000_000_000)
+      fail('product.unit_price', 'source amount exceeds supported bound');
+    if (product.price_precision !== 2 && product.price_precision !== 6)
+      fail('product.price_precision', 'expected 2 or 6 decimal places');
     text(product.tax_class, 'product.tax_class');
     validateSettings(product.settings, 'product.settings');
     refs.push(JSON.stringify([product.ref, product.variant ?? null]));
@@ -382,6 +386,103 @@ export function validateSeed(input: unknown): asserts input is Seed {
     codes.push(coupon.code);
   }
   unique(codes, 'seed.coupons');
+  if (value.configured) {
+    const settings = record(value.settings, 'seed.settings');
+    const tooling =
+      products.every(
+        (item) => record(item, 'product').tax_class === 'synthetic',
+      ) &&
+      coupons.length === 0 &&
+      Object.keys(settings).length === 0;
+    if (!tooling) {
+      keys(
+        settings,
+        ['model', 'sequential_discounts', 'round_tax_at_subtotal'],
+        [],
+        'seed.settings',
+      );
+      if (
+        settings.model !== 'woo-percent-v1' ||
+        settings.sequential_discounts !== false ||
+        settings.round_tax_at_subtotal !== false
+      )
+        fail(
+          'seed.settings',
+          'only woo-percent-v1 with non-sequential discounts and per-line tax rounding is supported',
+        );
+      const context = record(value.context, 'seed.context');
+      if (context.country !== 'FR' || context.prices_include_tax !== true)
+        fail(
+          'seed.context',
+          'prepared model requires FR and inclusive source prices',
+        );
+      const productRefs = products.map((item) => record(item, 'product').ref);
+      for (const item of products) {
+        const product = record(item, 'product');
+        if (product.price_precision !== 6)
+          fail(
+            'product.price_precision',
+            'prepared model requires exact six-decimal source units',
+          );
+        const configuration = record(product.settings, 'product.settings');
+        keys(
+          configuration,
+          [
+            'tax_rate_percent',
+            'sold_individually',
+            'max_quantity',
+            'name',
+            'native_id',
+          ],
+          [],
+          'product.settings',
+        );
+        if (
+          configuration.tax_rate_percent !== '5.5' &&
+          configuration.tax_rate_percent !== '20'
+        )
+          fail('product.settings.tax_rate_percent', 'unsupported rate');
+        boolean(
+          configuration.sold_individually,
+          'product.settings.sold_individually',
+        );
+        integer(configuration.max_quantity, 'product.settings.max_quantity', 1);
+        if (
+          configuration.max_quantity > 3 ||
+          (configuration.sold_individually && configuration.max_quantity !== 1)
+        )
+          fail(
+            'product.settings.max_quantity',
+            'outside the bounded capture domain',
+          );
+        text(configuration.name, 'product.settings.name');
+        integer(configuration.native_id, 'product.settings.native_id', 1);
+      }
+      for (const item of coupons) {
+        const coupon = record(item, 'coupon');
+        const configuration = record(coupon.settings, 'coupon.settings');
+        keys(
+          configuration,
+          ['eligible_ref', 'individual_use'],
+          [],
+          'coupon.settings',
+        );
+        if (
+          !productRefs.includes(configuration.eligible_ref) ||
+          configuration.individual_use !== false
+        )
+          fail(
+            'coupon.settings',
+            'expected one catalogue eligibility reference and combinable coupons',
+          );
+        if (!['10', '20'].includes(String(coupon.amount)))
+          fail(
+            'coupon.amount',
+            'only measured 10 and 20 percent inputs are supported',
+          );
+      }
+    }
+  }
   if (
     !value.configured &&
     (products.length ||

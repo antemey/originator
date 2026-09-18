@@ -19,8 +19,8 @@
         "tax_rate_percent": "5.5",
         "sold_individually": true,
         "max_quantity": 1,
-        "name": "Café Découverte - 250g",
-        "native_id": 8268
+        "name": "Café Découverte — 250g / Café en grains (non moulu)",
+        "native_id": 10
       }
     },
     {
@@ -33,7 +33,7 @@
         "sold_individually": false,
         "max_quantity": 2,
         "name": "Paquet de 50 spatules",
-        "native_id": 14708
+        "native_id": 11
       }
     }
   ],
@@ -42,6 +42,15 @@
       "code": "decouverte10",
       "type": "percent",
       "amount": "10",
+      "settings": {
+        "eligible_ref": "cafe-decouverte",
+        "individual_use": false
+      }
+    },
+    {
+      "code": "lab20",
+      "type": "percent",
+      "amount": "20",
       "settings": {
         "eligible_ref": "cafe-decouverte",
         "individual_use": false

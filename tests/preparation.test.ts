@@ -1,5 +1,4 @@
 import {
-  cpSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
@@ -14,6 +13,7 @@ import {
   preparationReport,
 } from '../harness/check-preparation';
 import { repoRoot } from '../harness/paths';
+import { validateSeed } from '../harness/validate';
 import { example, syntheticSeed } from './helpers';
 
 const temporary: string[] = [];
@@ -25,9 +25,15 @@ function setup() {
   temporary.push(root);
   mkdirSync(join(root, 'target/lab'), { recursive: true });
   mkdirSync(join(root, 'fixtures/discovery'), { recursive: true });
-  cpSync(join(repoRoot, 'target/seed.json'), join(root, 'target/seed.json'));
   const write = (path: string, value: unknown) =>
     writeFileSync(join(root, path), JSON.stringify(value));
+  write('target/seed.json', {
+    schema_version: 1,
+    configured: false,
+    products: [],
+    coupons: [],
+    settings: {},
+  });
   const fixture = {
     ...example(),
     id: 'direct',
@@ -55,6 +61,31 @@ it('reports the empty setup truthfully and refuses a lab-only corpus', () => {
     source: { ...fixture.source, woo_version: 'synthetic' },
   });
   expect(() => assertPreparationReady(root)).toThrow('direct-target');
+});
+
+it('validates prepared source precision and rejects unsupported settings before freezing', () => {
+  const seed = JSON.parse(
+    readFileSync(join(repoRoot, 'target/seed.json'), 'utf8'),
+  );
+  expect(() => validateSeed(seed)).not.toThrow();
+  for (const patch of [
+    { sequential_discounts: true },
+    { round_tax_at_subtotal: true },
+    { extra_mode: 'unsupported' },
+  ])
+    expect(() =>
+      validateSeed({ ...seed, settings: { ...seed.settings, ...patch } }),
+    ).toThrow();
+  for (const patch of [
+    { price_precision: 3 },
+    { price_precision: undefined },
+    { unit_price: 9.98 },
+    { unit_price: 10_000_000_001 },
+  ]) {
+    const changed = structuredClone(seed);
+    changed.products[0] = { ...changed.products[0], ...patch };
+    expect(() => validateSeed(changed)).toThrow();
+  }
 });
 it('accepts complete temporary references structurally without executing their expected engine outcomes', () => {
   const { root, write, fixture } = setup();
