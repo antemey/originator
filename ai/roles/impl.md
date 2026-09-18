@@ -22,7 +22,7 @@ Record received differences, significant corrections, commands and results.
 ## Prohibited
 
 Do not read held-out cases or alter seeds, fixtures, contract, harness or controls.
-Do not reseal, deliver, change roles, add dependencies or push.
+Do not commit, use operator checkpoint exceptions, reseal, deliver, change roles, add dependencies or push.
 Do not obtain new captures or infer unknown merchant configuration.
 
 ## Done
@@ -34,3 +34,11 @@ Return the changed files and evidence-backed findings to the operator.
 
 Stop on a blocked frozen input, unsupported assumption or exhausted cycle budget.
 Do not fix expectations to fit the engine. Leave an actionable note for Antoine.
+
+## V1 and checkpoint ownership
+
+Two lab percentage coupons with sequential discounts disabled are mandatory; no other combination mode is supported or to be implemented. Lab evidence does not establish merchant behavior. Preserve input precision; flag contract gaps before coding rather than rounding source prices prematurely.
+
+Schemas, seeds, references, adapter, harness and executable controls are frozen. A necessary change returns to Antoine's preparation phase with reasons and affected claims. `check:prep` does not establish engine fidelity. Full `pnpm check` is required for an accepted implementation; report genuine verification failures without suppressing them. Antoine alone may authorize the narrowly documented failing-checkpoint exception outside roles.
+
+Antoine records a clean checkpoint before this context and reviews all tracked/untracked paths after it. No client-specific permission/sentinel prerequisite remains. Stop at handoff; never launch another role.

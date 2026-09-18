@@ -1,28 +1,3 @@
 {
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": ".*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$(git rev-parse --show-toplevel)/scripts/role-hook.mjs\" pre",
-            "timeout": 120
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "^apply_patch$",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$(git rev-parse --show-toplevel)/scripts/role-hook.mjs\" post",
-            "timeout": 120
-          }
-        ]
-      }
-    ]
-  }
+  "hooks": {}
 }

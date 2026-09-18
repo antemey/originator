@@ -20,6 +20,7 @@ import {
 } from 'node:path';
 import { stdin, stdout } from 'node:process';
 import { createInterface } from 'node:readline/promises';
+import { assertPreparationReady } from '../harness/check-preparation';
 import {
   fixtureFiles,
   manifestContent,
@@ -31,16 +32,17 @@ import { assertClean, fingerprints, head } from '../harness/freeze';
 import { isMain, repoRoot } from '../harness/paths';
 import {
   array,
+  type Fixture,
   loadFixture,
   loadSeed,
   record,
   text,
-  validateSeed,
 } from '../harness/validate';
 
 interface ImportItem {
   source: string;
   sha256: string;
+  recipe_file?: string;
   session_recipe?: string;
   action_channel?: string;
   read_endpoint?: string;
@@ -55,11 +57,13 @@ interface Plan {
 }
 interface State {
   stage: 'frozen' | 'imported' | 'evaluated' | 'prepared';
-  plan_hash: string;
+  plan_hash?: string;
   evidence_hashes?: Record<string, string>;
   evaluation_code?: number;
 }
-interface Freeze {
+export interface Freeze {
+  frozen_at: string;
+  recipes: Record<string, string>;
   commit: string;
   hashes: Record<string, string>;
 }
@@ -102,6 +106,7 @@ export function validatePlan(value: unknown): Plan {
         throw new Error('Every import requires its reviewed SHA-256');
       if (heldout) {
         for (const key of [
+          'recipe_file',
           'session_recipe',
           'action_channel',
           'read_endpoint',
@@ -111,6 +116,7 @@ export function validatePlan(value: unknown): Plan {
         return {
           source: item.source,
           sha256: item.sha256,
+          recipe_file: String(item.recipe_file),
           session_recipe: String(item.session_recipe),
           action_channel: String(item.action_channel),
           read_endpoint: String(item.read_endpoint),
@@ -148,7 +154,15 @@ function readFreeze(): Freeze {
     text(value, `freeze.hashes.${key}`);
     return [key, value] as const;
   });
-  return { commit: value.commit, hashes: Object.fromEntries(entries) };
+  text(value.frozen_at, 'freeze.frozen_at');
+  const recipes = record(value.recipes, 'freeze.recipes');
+  for (const hash of Object.values(recipes)) text(hash, 'recipe hash');
+  return {
+    commit: value.commit,
+    frozen_at: value.frozen_at,
+    recipes: recipes as Record<string, string>,
+    hashes: Object.fromEntries(entries),
+  };
 }
 function readState(): State {
   const value = record(
@@ -161,7 +175,7 @@ function readState(): State {
     )
   )
     throw new Error('Invalid delivery state');
-  text(value.plan_hash, 'state.plan_hash');
+  if (value.plan_hash !== undefined) text(value.plan_hash, 'state.plan_hash');
   if (
     value.evaluation_code !== undefined &&
     ![0, 1, 2].includes(Number(value.evaluation_code))
@@ -178,7 +192,7 @@ function readState(): State {
   }
   return {
     stage: value.stage as State['stage'],
-    plan_hash: value.plan_hash,
+    ...(value.plan_hash === undefined ? {} : { plan_hash: value.plan_hash }),
     ...(evidence ? { evidence_hashes: evidenceHashes } : {}),
     ...(value.evaluation_code === undefined
       ? {}
@@ -233,6 +247,10 @@ function evidencePaths(plan: Plan): string[] {
     ...plan.heldout.map((item) => `fixtures/held-out/${basename(item.source)}`),
     ...plan.probes.map((item) => `research/probes/${basename(item.source)}`),
     'VERDICTS.md',
+    'ai/traces/delivery-freeze.json',
+    ...plan.heldout.map(
+      (item) => `ai/traces/heldout-recipes/${basename(item.recipe_file ?? '')}`,
+    ),
   ];
 }
 function readVerdict(): { code: 0 | 2; freezeCommit: string } {
@@ -276,41 +294,10 @@ export function assertReportReady(report: string): void {
     throw new Error('Write-up still contains unfinished placeholders');
 }
 function assertRealDiscovery(): void {
-  const seed: unknown = readJson(join(repoRoot, 'target/seed.json'));
-  validateSeed(seed);
-  if (!seed.configured)
-    throw new Error(
-      'Unconfigured setup cannot be delivered as a completed replication',
-    );
-  const real = fixtureFiles(repoRoot, 'discovery')
-    .map((file) => loadFixture(file))
-    .filter((fixture) => fixture.provenance !== 'synthetic');
-  if (
-    !real.length ||
-    !real.some(
-      (fixture) =>
-        fixture.provenance === 'target' || fixture.provenance === 'lab',
-    )
-  )
-    throw new Error(
-      'Real discovery and declared reference results are required',
-    );
-  for (const fixture of real) {
-    loadSeed(repoRoot, fixture);
-    if (
-      fixture.provenance === 'target' &&
-      (!fixture.source.url || !fixture.source.capture_hash)
-    )
-      throw new Error(`Target provenance incomplete: ${fixture.id}`);
-    if (fixture.provenance === 'lab' && !fixture.source.woo_version)
-      throw new Error(`Lab version missing: ${fixture.id}`);
-  }
+  assertPreparationReady(repoRoot);
 }
 function noRole(): void {
-  if (
-    existsSync(join(repoRoot, 'AGENTS.override.md')) ||
-    existsSync(join(repoRoot, '.codex/config.toml'))
-  )
+  if (existsSync(join(repoRoot, 'AGENTS.override.md')))
     throw new Error(
       'Operator only: close role sessions and run ./use-role.sh none first',
     );
@@ -319,18 +306,110 @@ function planHash(plan: Plan): string {
   return sha256(JSON.stringify(plan));
 }
 
+// Recipes use the existing fixture shape without expected/checkpoints. No new enum.
+export function recipePath(root: string, source: string): string {
+  if (!/^\.\.\/held-out\/recipes\/[A-Za-z0-9_-]+\.json$/.test(source))
+    throw new Error('Recipe must be an explicit ../held-out/recipes/<id>.json');
+  const path = realpathSync(resolve(root, source));
+  if (dirname(path) !== realpathSync(resolve(root, '../held-out/recipes')))
+    throw new Error('Recipe escapes the registered recipe directory');
+  return path;
+}
+export function createCaptureFreeze(root: string, commit: string): Freeze {
+  const registration: unknown = readJson(join(root, '.delivery/recipes.json'));
+  const recipes: Record<string, string> = {};
+  for (const entry of array(registration, 'registered recipes')) {
+    const item = record(entry, 'registered recipe');
+    text(item.source, 'recipe.source');
+    text(item.sha256, 'recipe.sha256');
+    const path = recipePath(root, item.source);
+    const recipe = loadFixture(path, false);
+    if (
+      recipe.expected ||
+      recipe.checkpoints ||
+      recipe.provenance === 'synthetic' ||
+      !recipe.seed_file ||
+      !recipe.actions.length
+    )
+      throw new Error(
+        'Pre-registered recipe requires explicit seed/actions and no captured outcomes',
+      );
+    loadSeed(root, recipe);
+    if (recipes[item.source] || sha256(readFileSync(path)) !== item.sha256)
+      throw new Error('Duplicate or changed pre-registered recipe');
+    recipes[item.source] = item.sha256;
+  }
+  if (!Object.keys(recipes).length)
+    throw new Error('Pre-registered recipes are required before freeze');
+  const freeze: Freeze = {
+    commit,
+    frozen_at: new Date().toISOString(),
+    hashes: fingerprints(root),
+    recipes,
+  };
+  writeFileSync(
+    join(root, '.delivery/freeze.json'),
+    `${JSON.stringify(freeze, null, 2)}\n`,
+    { flag: 'wx' },
+  );
+  save(join(root, '.delivery/state.json'), { stage: 'frozen' });
+  return freeze;
+}
+export function assertRecipeMatches(
+  root: string,
+  freeze: Freeze,
+  item: ImportItem,
+  fixture: Fixture,
+): void {
+  if (!item.recipe_file || !freeze.recipes[item.recipe_file])
+    throw new Error('Import does not reference a pre-registered recipe');
+  const path = recipePath(root, item.recipe_file);
+  if (sha256(readFileSync(path)) !== freeze.recipes[item.recipe_file])
+    throw new Error('Pre-registered recipe changed after freeze');
+  const recipe = loadFixture(path, false);
+  for (const key of [
+    'id',
+    'provenance',
+    'context',
+    'seed_file',
+    'actions',
+  ] as const) {
+    // Compare JSON structurally, preserving array/action order, ignoring object key order.
+    if (canonical(recipe[key]) !== canonical(fixture[key]))
+      throw new Error(
+        `Captured case differs from pre-registered recipe: ${key}`,
+      );
+  }
+  if (Date.parse(fixture.source.date) < Date.parse(freeze.frozen_at))
+    throw new Error('Held-out capture timestamp predates the recorded freeze');
+}
+function canonical(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
+  if (value && typeof value === 'object')
+    return `{${Object.entries(value)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([key, item]) => `${JSON.stringify(key)}:${canonical(item)}`)
+      .join(',')}}`;
+  return JSON.stringify(value) ?? 'undefined';
+}
+export function validateRecipeSelection(freeze: Freeze, plan: Plan): void {
+  const selected = plan.heldout.map((item) => item.recipe_file);
+  if (
+    new Set(selected).size !== selected.length ||
+    canonical([...selected].sort()) !==
+      canonical(Object.keys(freeze.recipes).sort())
+  )
+    throw new Error(
+      'Import plan must cover every pre-registered recipe exactly once',
+    );
+}
 function prepare(): void {
   noRole();
-  command('gitleaks', ['version']);
-  const plan = validatePlan(readJson(join(repoRoot, '.delivery/plan.json')));
   assertRealDiscovery();
   mkdirSync(join(repoRoot, '.delivery'), { recursive: true });
   const stateFile = join(repoRoot, '.delivery/state.json');
-  let state: State;
   if (!existsSync(stateFile)) {
     assertClean(repoRoot);
-    if (head(repoRoot) !== plan.freeze_commit)
-      throw new Error('Plan must name the clean current frozen commit');
     if (
       existsSync(join(repoRoot, 'VERDICTS.md')) ||
       fixtureFiles(repoRoot, 'held-out').length
@@ -340,25 +419,37 @@ function prepare(): void {
       throw new Error(
         'An unfinished freeze exists without state; inspect it before continuing',
       );
-    const freeze: Freeze = {
-      commit: head(repoRoot),
-      hashes: fingerprints(repoRoot),
-    };
-    writeFileSync(
-      join(repoRoot, '.delivery/freeze.json'),
-      `${JSON.stringify(freeze, null, 2)}\n`,
-      { flag: 'wx' },
+    run('corepack', ['pnpm@10.11.0', 'check']);
+    const freeze = createCaptureFreeze(repoRoot, head(repoRoot));
+    console.log(
+      `Frozen at ${freeze.commit} (${freeze.frozen_at}). STOP for operator capture. Then write the reviewed .delivery/plan.json and rerun prepare. No results imported or evaluated.`,
     );
-    state = { stage: 'frozen', plan_hash: planHash(plan) };
-    save(stateFile, state);
-  } else state = readState();
+    return;
+  }
+  const state = readState();
   const freeze = readFreeze();
   checkFreeze(freeze);
+  const planFile = join(repoRoot, '.delivery/plan.json');
+  if (!existsSync(planFile)) {
+    console.log(
+      'Frozen checkpoint preserved; waiting for operator capture and reviewed import plan.',
+    );
+    return;
+  }
+  command('gitleaks', ['version']);
+  const plan = validatePlan(readJson(planFile));
   if (
-    planHash(plan) !== state.plan_hash ||
-    plan.freeze_commit !== freeze.commit
+    plan.freeze_commit !== freeze.commit ||
+    (state.plan_hash !== undefined && planHash(plan) !== state.plan_hash)
   )
-    throw new Error('Reviewed import plan changed after freezing');
+    throw new Error(
+      'Reviewed import plan changed or names another frozen commit',
+    );
+  validateRecipeSelection(freeze, plan);
+  if (state.plan_hash === undefined) {
+    state.plan_hash = planHash(plan);
+    save(stateFile, state);
+  }
   if (state.stage === 'prepared') {
     console.log(
       'Already prepared. Finalize the write-up, then run ./deliver.sh finalize.',
@@ -382,6 +473,7 @@ function prepare(): void {
       if (group === 'fixtures/held-out') {
         const fixture = loadFixture(source);
         loadSeed(repoRoot, fixture);
+        assertRecipeMatches(repoRoot, freeze, item, fixture);
         if (fixture.provenance === 'synthetic')
           throw new Error('Real held-out evidence is required');
       }
@@ -408,6 +500,28 @@ function prepare(): void {
           );
       } else copyFileSync(file, destination);
     }
+    const recipeDirectory = join(repoRoot, 'ai/traces/heldout-recipes');
+    mkdirSync(recipeDirectory, { recursive: true });
+    for (const source of Object.keys(freeze.recipes)) {
+      const path = recipePath(repoRoot, source);
+      if (sha256(readFileSync(path)) !== freeze.recipes[source])
+        throw new Error('Recipe changed');
+      const destination = join(recipeDirectory, basename(source));
+      if (
+        existsSync(destination) &&
+        sha256(readFileSync(destination)) !== freeze.recipes[source]
+      )
+        throw new Error('Refusing to overwrite a published recipe');
+      copyFileSync(path, destination);
+    }
+    const publishedFreeze = join(repoRoot, 'ai/traces/delivery-freeze.json');
+    const freezeBytes = readFileSync(join(repoRoot, '.delivery/freeze.json'));
+    if (
+      existsSync(publishedFreeze) &&
+      sha256(readFileSync(publishedFreeze)) !== sha256(freezeBytes)
+    )
+      throw new Error('Refusing to overwrite published freeze');
+    writeFileSync(publishedFreeze, freezeBytes);
     const provenanceFile = join(repoRoot, 'fixtures/PROVENANCE.md');
     const marker = `<!-- delivery-freeze ${freeze.commit} -->`;
     const provenance = readFileSync(provenanceFile, 'utf8');
@@ -429,6 +543,22 @@ function prepare(): void {
     save(stateFile, state);
   }
   if (state.stage === 'imported') {
+    const expectedFiles = plan.heldout
+      .map((item) => basename(item.source))
+      .sort();
+    const importedFiles = fixtureFiles(repoRoot, 'held-out')
+      .map((file) => basename(file))
+      .sort();
+    if (canonical(expectedFiles) !== canonical(importedFiles))
+      throw new Error(
+        'Published held-out selection differs from reviewed plan',
+      );
+    for (const item of plan.heldout) {
+      const path = join(repoRoot, 'fixtures/held-out', basename(item.source));
+      if (sha256(readFileSync(path)) !== item.sha256)
+        throw new Error('Imported evidence changed before evaluation');
+      assertRecipeMatches(repoRoot, freeze, item, loadFixture(path));
+    }
     if (!existsSync(join(repoRoot, 'VERDICTS.md'))) {
       const result = spawnSync('corepack', ['pnpm@10.11.0', 'heldout'], {
         cwd: repoRoot,

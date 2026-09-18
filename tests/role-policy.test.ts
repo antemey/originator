@@ -93,7 +93,7 @@ it('allows exact checks while refusing operator commands, pushes and shell expan
   expect(commandPolicy('cat src/engine/index.ts', 'impl')).toBeNull();
   expect(commandPolicy('cat tests/verify.test.ts', 'verify')).toBeNull();
 });
-it('creates both local role files, preserves common instructions, and removes only generated files', () => {
+it('generates common plus role instructions without client configuration and preserves unrelated files', () => {
   const root = temp();
   mkdirSync(join(root, 'scripts'));
   mkdirSync(join(root, 'ai/roles'), { recursive: true });
@@ -114,13 +114,31 @@ it('creates both local role files, preserves common instructions, and removes on
     expect(readFileSync(join(root, 'AGENTS.override.md'), 'utf8')).toContain(
       'Common sentinel instruction.',
     );
-    const config = readFileSync(join(root, '.codex/config.toml'), 'utf8');
-    expect(config).not.toContain('__REPO__');
-    expect(config).toContain(`default_permissions = "${role}"`);
+    expect(existsSync(join(root, '.codex/config.toml'))).toBe(false);
+    expect(readFileSync(join(root, 'AGENTS.override.md'), 'utf8')).toContain(
+      role === 'impl' ? '# Implementation role' : '# Verification role',
+    );
   }
+  mkdirSync(join(root, '.codex'), { recursive: true });
+  writeFileSync(
+    join(root, '.codex/config.toml'),
+    '# originator-generated-role-v1: impl\n',
+  );
   expect(run('none').status).toBe(0);
   expect(existsSync(join(root, 'AGENTS.override.md'))).toBe(false);
   expect(existsSync(join(root, '.codex/config.toml'))).toBe(false);
+  mkdirSync(join(root, '.delivery'));
+  writeFileSync(join(root, '.delivery/freeze.json'), '{}');
+  expect(run('impl').status).toBe(1);
+  expect(run('verify').status).toBe(1);
+  rmSync(join(root, '.delivery/freeze.json'));
+  writeFileSync(join(root, '.codex/config.toml'), '# Personal configuration');
+  expect(run('impl').status).toBe(1);
+  expect(run('none').status).toBe(1);
+  expect(readFileSync(join(root, '.codex/config.toml'), 'utf8')).toBe(
+    '# Personal configuration',
+  );
+  rmSync(join(root, '.codex/config.toml'));
   writeFileSync(join(root, 'AGENTS.override.md'), 'Unrelated operator content');
   expect(run('impl').status).toBe(1);
   expect(run('none').status).toBe(1);

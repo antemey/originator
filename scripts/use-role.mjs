@@ -1,13 +1,11 @@
 import {
   existsSync,
-  mkdirSync,
   readdirSync,
   readFileSync,
   realpathSync,
   unlinkSync,
   writeFileSync,
 } from 'node:fs';
-import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -43,45 +41,27 @@ try {
   } else {
     const published = join(root, 'fixtures/held-out');
     if (
+      existsSync(join(root, '.delivery/freeze.json')) ||
       existsSync(join(root, 'VERDICTS.md')) ||
       (existsSync(published) &&
         readdirSync(published).some((name) => name !== '.gitkeep'))
     )
       throw new Error(
-        'Cannot start development roles after held-out publication',
+        'Cannot start development roles after final freeze or held-out publication',
       );
-    /** @param {string} value */
-    const tomlStringContent = (value) => JSON.stringify(value).slice(1, -1);
-    const config = readFileSync(
-      join(root, `ai/roles/config.${role}.toml`),
-      'utf8',
-    )
-      .replaceAll('__REPO__', tomlStringContent(root))
-      .replaceAll(
-        '__HELDOUT__',
-        tomlStringContent(resolve(root, '../held-out')),
-      )
-      .replaceAll('__TMP__', tomlStringContent(realpathSync(tmpdir())));
-    mkdirSync(join(root, '.codex'), { recursive: true });
+    // Only retire an old configuration recognized by the marker check above.
+    const legacyConfig = join(root, '.codex/config.toml');
+    if (existsSync(legacyConfig)) unlinkSync(legacyConfig);
     writeFileSync(
       join(root, 'AGENTS.override.md'),
       `<!-- ${marker}: ${role} -->\n${readFileSync(join(root, 'AGENTS.md'), 'utf8')}\n${readFileSync(join(root, `ai/roles/${role}.md`), 'utf8')}`,
     );
-    writeFileSync(
-      join(root, '.codex/config.toml'),
-      `# ${marker}: ${role}\n${config}`,
-    );
     console.log(
-      `Active role: ${role}. Close the previous session and open a NEW Codex session from this directory:`,
+      `Active role: ${role}. Close the previous session and open a NEW session from this repository root.`,
     );
+    console.log('Read AGENTS.override.md. Do not resume or fork another role.');
     console.log(
-      `codex --strict-config -c 'default_permissions="${role}"' -a never`,
-    );
-    console.log(
-      'Review project trust, /permissions and /hooks before work. Run the sentinel recipe in SETUP-NOTES.md first. Do not resume or fork another role.',
-    );
-    console.log(
-      'Commands outside the role allowlist are refused; ask the operator from the conversation instead of escalating the shell.',
+      'No client configuration is generated. Role rights and operator path review are workflow controls, not a security boundary.',
     );
   }
 } catch (error) {

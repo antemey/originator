@@ -18,7 +18,9 @@
     "fixtures:seal": "node --import tsx harness/checksums.ts write",
     "scenario": "node --import tsx src/cli.ts",
     "heldout": "node --import tsx harness/run-heldout.ts",
-    "check": "pnpm typecheck && pnpm lint && pnpm arch && pnpm fixtures:check && pnpm test"
+    "check": "pnpm typecheck && pnpm lint && pnpm arch && pnpm fixtures:check && pnpm test",
+    "check:prep": "pnpm typecheck && pnpm lint && pnpm arch && pnpm fixtures:check && pnpm exec vitest run tests/adapter.test.ts tests/money.test.ts tests/preparation.test.ts tests/role-policy.test.ts tests/workflow-hooks.test.ts tests/delivery.test.ts && node --import tsx harness/check-preparation.ts",
+    "hooks:install": "node scripts/install-git-hooks.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.6",

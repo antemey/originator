@@ -1,0 +1,5 @@
+#!/bin/sh
+# originator-git-workflow-v1
+set -eu
+cd "$(git rev-parse --show-toplevel)"
+exec node scripts/git-hook.mjs pre-commit

@@ -4,7 +4,7 @@ import { createEngine } from '../src/engine';
 import type { Engine } from '../src/engine/contract';
 import { sha256, walk } from './checksums';
 import { replay } from './compare';
-import { assertClean, fingerprints, head } from './freeze';
+import { fingerprints, head } from './freeze';
 import { isMain, repoRoot } from './paths';
 import { loadFixture, loadSeed } from './validate';
 
@@ -115,9 +115,9 @@ if (isMain(import.meta.url)) {
       if (head(repoRoot) !== freezeCommit)
         throw new Error('Official evaluation must run at the frozen commit');
     } else {
-      assertClean(repoRoot);
-      freezeCommit = head(repoRoot);
-      codeHashes = fingerprints(repoRoot);
+      throw new Error(
+        'Record the pre-capture freeze with ./deliver.sh prepare first',
+      );
     }
     process.exitCode = evaluateHeldout({
       root: repoRoot,

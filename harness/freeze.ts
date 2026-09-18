@@ -4,6 +4,12 @@ import { join, relative } from 'node:path';
 import { sha256, walk } from './checksums';
 
 export const frozenPaths = [
+  'ai/traces/discovery',
+  'research/compose.yml',
+  'research/.env.example',
+  'research/probe.sh',
+  'research/seed',
+  'fixtures/discovery',
   'src',
   'target',
   'harness',
@@ -29,6 +35,9 @@ export function fingerprints(root: string): Record<string, string> {
     const full = join(root, path);
     if (!existsSync(full)) throw new Error(`Frozen path missing: ${path}`);
     const files = [
+      'ai/traces/discovery',
+      'research/seed',
+      'fixtures/discovery',
       'src',
       'target',
       'harness',

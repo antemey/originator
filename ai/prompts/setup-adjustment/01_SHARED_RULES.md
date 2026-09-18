@@ -1,4 +1,4 @@
-# Constitution
+# Shared rules
 
 ## Scope, effort, and sources of truth
 
@@ -42,21 +42,3 @@ A fixture checksum is an integrity check, not an inviolable boundary if its mani
 The pre-engine reference checkpoint may therefore have `check:prep` green and full `check` red for recorded stub/business mismatches. Antoine alone may authorize a documented pre-commit exception for that checkpoint or an intentionally failing verification checkpoint. Roles cannot use that exception. Accepted implementation checkpoints and final delivery require full `pnpm check`; no delivery with an empty real corpus.
 
 Keep secrets out of artifacts. Merchant interaction is limited to guest browsing and ephemeral cart actions: no account creation, checkout or payment. Woo local starts only in preparation, binds its web service to `127.0.0.1`, uses explicit versions and exposes no public database. Reader checks require neither Docker nor merchant/lab access after dependency installation.
-
-## Repository protocol
-
-- At most three discovery implementation/verification/correction cycles, tracked by Antoine; no concurrent roles or inherited role contexts.
-- Keep business batches small (roughly 250 lines or five files); initial alignment infrastructure is not a business batch.
-- Preserve rule provenance with source revision/file:line, capture or lab measurement, derivation or explicit hypothesis.
-- Local Git hooks and operator path reviews are workflow checks, not a security boundary. The old per-role client/sentinel audit is superseded, not a preparation prerequisite.
-- Freeze code and fingerprints before capturing held-out outcomes. Pre-register recipes before that freeze; evaluate once after capture/import. No executable correction after the freeze.
-- Neither role reads `../held-out/` or `fixtures/held-out/`, or executes operator-only commands. Verification does not inspect implementation/diff traces. Useful findings must be handed off independently of code/diff traces.
-- The initial setup and targeted setup adjustment are historical delivery annexes at `ai/prompts/setup.md` and `ai/prompts/setup-adjustment/`. No runtime dependency on the external pack. Follow the archival policy below for subsequent work.
-
-## Archival policy
-
-The unit of archival is an executed mission or a significant decision, not a commit. Version and deliver the initial setup and targeted setup adjustment as clearly identified historical annexes. For subsequent work, retain the preparation, implementation and verification briefs actually executed, plus interventions that materially change scope, a business assumption, the contract, references or the validation method. Preserve the actual instruction, with the resulting decision or evidence (or a link to it); do not retrospectively rewrite it into an improved brief.
-
-Retain an instruction that led to an important correction after a failure, together with the result that explains its value. Select for explanatory value, not success: an unsuccessful attempt that changed the approach belongs in the record. Full conversation transcripts are not required.
-
-Do not create separate archives for routine continuations, command approvals, identical retries, presentation corrections or every debugging exchange. A checkpoint with no new significant instruction requires no new prompt. One brief may serve several checkpoints without duplication. Local commits do not create additional archival obligations; Antoine performs only the final remote push.
