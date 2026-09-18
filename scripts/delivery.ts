@@ -446,10 +446,6 @@ function prepare(): void {
       'Reviewed import plan changed or names another frozen commit',
     );
   validateRecipeSelection(freeze, plan);
-  if (state.plan_hash === undefined) {
-    state.plan_hash = planHash(plan);
-    save(stateFile, state);
-  }
   if (state.stage === 'prepared') {
     console.log(
       'Already prepared. Finalize the write-up, then run ./deliver.sh finalize.',
@@ -490,6 +486,10 @@ function prepare(): void {
       copyFileSync(source, file);
     }
     scan(staging);
+    if (state.plan_hash === undefined) {
+      state.plan_hash = planHash(plan);
+      save(stateFile, state);
+    }
     for (const file of walk(staging)) {
       const destination = join(repoRoot, relative(staging, file));
       mkdirSync(dirname(destination), { recursive: true });

@@ -167,3 +167,42 @@ it('hook denies protected edits, pushes and a commit when the check command fail
   expect(commit.status).toBe(2);
   expect(commit.stdout).toContain('commit blocked');
 });
+
+it.each(['AGENTS.md', 'ai/roles/verify.md'])(
+  'preserves generated files byte-for-byte when %s is missing',
+  (missing) => {
+    const root = temp();
+    mkdirSync(join(root, 'scripts'));
+    mkdirSync(join(root, 'ai/roles'), { recursive: true });
+    mkdirSync(join(root, '.codex'));
+    cpSync(
+      join(repoRoot, 'scripts/use-role.mjs'),
+      join(root, 'scripts/use-role.mjs'),
+    );
+    writeFileSync(join(root, 'AGENTS.md'), 'Synthetic common instructions.\n');
+    writeFileSync(
+      join(root, 'ai/roles/verify.md'),
+      'Synthetic verification brief.\n',
+    );
+    const override = Buffer.from(
+      '<!-- originator-generated-role-v1: impl -->\nPrevious instructions.\n',
+    );
+    const config = Buffer.from(
+      '# originator-generated-role-v1: impl\nprevious = true\n',
+    );
+    writeFileSync(join(root, 'AGENTS.override.md'), override);
+    writeFileSync(join(root, '.codex/config.toml'), config);
+    rmSync(join(root, missing));
+
+    const result = spawnSync(
+      process.execPath,
+      [join(root, 'scripts/use-role.mjs'), 'verify'],
+      { encoding: 'utf8' },
+    );
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain('ENOENT');
+    expect(readFileSync(join(root, 'AGENTS.override.md'))).toEqual(override);
+    expect(existsSync(join(root, '.codex/config.toml'))).toBe(true);
+    expect(readFileSync(join(root, '.codex/config.toml'))).toEqual(config);
+  },
+);

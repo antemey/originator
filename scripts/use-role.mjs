@@ -49,13 +49,13 @@ try {
       throw new Error(
         'Cannot start development roles after final freeze or held-out publication',
       );
-    // Only retire an old configuration recognized by the marker check above.
+    const common = readFileSync(join(root, 'AGENTS.md'), 'utf8');
+    const brief = readFileSync(join(root, `ai/roles/${role}.md`), 'utf8');
+    const override = `<!-- ${marker}: ${role} -->\n${common}\n${brief}`;
+    writeFileSync(join(root, 'AGENTS.override.md'), override);
+    // Retire recognized legacy configuration only after the override is written.
     const legacyConfig = join(root, '.codex/config.toml');
     if (existsSync(legacyConfig)) unlinkSync(legacyConfig);
-    writeFileSync(
-      join(root, 'AGENTS.override.md'),
-      `<!-- ${marker}: ${role} -->\n${readFileSync(join(root, 'AGENTS.md'), 'utf8')}\n${readFileSync(join(root, `ai/roles/${role}.md`), 'utf8')}`,
-    );
     console.log(
       `Active role: ${role}. Close the previous session and open a NEW session from this repository root.`,
     );
