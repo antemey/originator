@@ -1,4 +1,30 @@
-# Current operator handoff — verifier reading-order correction, 2026-09-18
+# Current operator handoff — optional version-pinned verifier reference, 2026-09-18
+
+Operator-only document: verification sessions must not read this handoff. Their launch prompt supplies the checkpoint, cycle and current-session trace location.
+
+At checkpoint `7d302d60fed20b9c8d20bebf15a45815691b1758`, the restarted verifier reported that it recorded initial assertions before reading the authorized current model, then stopped on exposure to retrospective implementation/review material. It reported no tests added or executed, no held-out access and no functional verdict. The operator confirmed that the sole new path was `ai/traces/verification-cycle-1/initial-assertions.md`, with no tracked changes or staged selection. That trace is retained unchanged as an interrupted-attempt artifact, not a completed verification result or an input to the next verifier.
+
+Antoine approved the narrowly scoped correction and a fresh restart: the source is now defined by its version as well as its path. The original model at phase-B checkpoint `818bcfa6d8f85680c1aa64695614c69c9e221465` is an optional complementary coverage reference after initial assertions, never a required reading or an independent oracle. The current model is prohibited. No retrospective synthesis, new isolation mechanism or reassessment of preparation, implementation or reserved recipes is authorized by this correction.
+
+Original operator decision excerpt, preserved verbatim: “Je valide la reprise proposée, avec un allègement : le modèle du checkpoint B devient une référence complémentaire facultative, pas une lecture obligatoire. Nouvelle session verify, aucune lecture du modèle courant, et pas de nouveau chantier d’isolation.”
+
+The stop followed the instructions correctly. The incident reflects a contradiction in the authorized reading rules, not verifier misconduct or a demonstrated engine defect. Recording assertions before exposure preserves their reported order of creation but does not establish independence of subsequent analysis in that same context. Do not reuse the exposed session. Cycle 1 verification remains pending.
+
+This approved operator amendment changes only `ai/constitution.md` and `ai/roles/verify.md` among frozen instructions; the effective fingerprint amendment is recorded below. The incident record and preserved trace accompany the correction. Engine, tests, current and historical model bytes, contract, seeds, fixtures, adapter, harness, scripts and executable configuration remain unchanged. After the commit is verified, Antoine regenerates `verify` and opens a genuinely new session from that commit. Use `ai/traces/verification-cycle-1/restart/` for its new trace; do not read or overwrite the previous attempt's assertions. No role is automatically activated.
+
+Effective instruction amendment (Git blob/tree IDs):
+
+| Instruction path | Prior checkpoint | Amended checkpoint |
+| --- | --- | --- |
+| `ai/constitution.md` | `62405d0038c90ed0dd4860e76a49291c532cbed4` | `7a27b863fa84f39fd9831f2dec0304697f5c3663` |
+| `ai/roles/verify.md` | `074bb213c50235ac1e91426d40710a2dc32e986a` | `9b5c8de7e7513aa69b1ca626b3b635ad764476e2` |
+| `ai/roles` | `2882222adc772ebb2739c8cfa8fc0591e007dedc` | `bae9e03b4be2bd6c38dc37a81e72666d9638922e` |
+
+The optional phase-B model is blob `524f0803c84b1d275a1647710cb6a82ee7da0218`. The preserved interrupted-attempt trace has SHA-256 `cda51ca3871d432d6047b2f366bf274c2c73b8995c185d1ef7f55faea3631c83`. These fingerprints were checked without reading either artifact as a reasoning input. Prior fingerprint tables remain historical; this amendment supersedes only the paths listed above.
+
+---
+
+# Historical operator handoff — verifier reading-order correction, 2026-09-18
 
 Operator-only document: verification sessions must not read this handoff. Their launch prompt supplies the checkpoint and cycle; `AGENTS.md` and `ai/roles/verify.md` supply their authorized reading order.
 
