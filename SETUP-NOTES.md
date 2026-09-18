@@ -1,4 +1,4 @@
-# Active alignment note — 2026-09-18
+# Active setup adjustment note — 2026-09-18
 
 Phase A supersedes the historical live-role client/sandbox/hook/sentinel prerequisite below. It is not required before business preparation. Original PASS results retain their original scope; all unperformed live checks remain NOT RUN. Do not run the historical recipe as a current requirement.
 
@@ -6,7 +6,7 @@ Active controls: `use-role.sh` generates common plus role instructions only and 
 
 Local Git `pre-commit` runs full check; `pre-push` blocks workflow pushes. Install with `pnpm hooks:install`; this changes only repository-local Git configuration and refuses competing hooks. Checkpoint exceptions and manual publication are documented in [delivery](docs/delivery.md). Operator checkpoint/path reviews are required. These checks are not a security boundary.
 
-Use `pnpm check:prep` for structural reference readiness and selected tooling/adapter tests; engine fidelity is not evaluated. It is expected to fail in this empty setup. `pnpm check` retains all real discovery comparisons. Phase-A observed results and remaining limitations are recorded in [alignment report](docs/alignment-report.md).
+Use `pnpm check:prep` for structural reference readiness and selected tooling/adapter tests; engine fidelity is not evaluated. It is expected to fail in this empty setup. `pnpm check` retains all real discovery comparisons. Phase-A observed results and remaining limitations are recorded in [setup adjustment report](docs/setup-adjustment-report.md).
 
 Everything below is the preserved 2026-09-16 setup record, not an active execution brief. References to remaining client checks and old delivery sequencing are superseded by this note and the current delivery guide.
 

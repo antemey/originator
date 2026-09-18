@@ -1,8 +1,8 @@
-# Phase-A alignment report — 2026-09-18
+# Phase-A setup adjustment report — 2026-09-18
 
 ## Outcome and baseline
 
-Phase A only. The existing repository remains on `main` at `0cfe62a`; no commit or push was performed. Initial status was modified `AGENTS.md` and untracked `docs/session-handoff.md`. The existing handoff is preserved in full as a labelled historical section; its AGENTS reference is retained and updated. All other changes below belong to this alignment.
+Phase A only. The existing repository remains on `main` at `0cfe62a`; no commit or push was performed. Initial status was modified `AGENTS.md` and untracked `docs/session-handoff.md`. The existing handoff is preserved in full as a labelled historical section; its AGENTS reference is retained and updated. All other changes below belong to this setup adjustment.
 
 Read the supplied `00_START.md`, `01_SHARED_RULES.md`, `02_ALIGN.md` in order, then active repository instructions. Preparation/delivery pack briefs and historical setup briefs were not loaded for this phase. Exact copies of the three actionable documents and the launch prompt are in `ai/prompts/setup-adjustment/`. The external pack remains outside the repository; no runtime/reader command depends on it. Authored artifacts are English; original labels/evidence remain unchanged.
 
@@ -15,7 +15,7 @@ Read the supplied `00_START.md`, `01_SHARED_RULES.md`, `02_ALIGN.md` in order, t
 | Minimal roles and local Git checks | `scripts/use-role.mjs`, `.codex/hooks.json`, `scripts/git-hook.mjs`, `scripts/git-hooks/{pre-commit,pre-push}`, `scripts/install-git-hooks.mjs`, `tests/role-policy.test.ts`, `tests/workflow-hooks.test.ts` |
 | Preparation readiness | `package.json`, `harness/check-preparation.ts`, `tests/preparation.test.ts`, `target/lab/.gitkeep`, `target/context.md`, `woo/kernel-model.md` |
 | Freeze before capture and resumable delivery | `scripts/delivery.ts`, `harness/freeze.ts`, `harness/run-heldout.ts`, `tests/delivery.test.ts`, `docs/delivery.md` |
-| Alignment/effort record | `docs/alignment-report.md`, `docs/notes/cost-register.md` |
+| Setup adjustment/effort record | `docs/setup-adjustment-report.md`, `docs/notes/cost-register.md` |
 
 The local Git setting `core.hooksPath=scripts/git-hooks` was installed successfully. No global/client security setting, dependency or lockfile changed. The installer refuses competing hooks instead of overwriting them. Pre-commit runs full check; a role cannot commit. Only Antoine can use a documented reference/verification checkpoint exception. Accepted implementation and final delivery require full check. Pre-push blocks workflow publication; the final audited publication remains a manual operator action.
 
@@ -50,3 +50,9 @@ No ambiguity blocks completion of phase A. The source-precision issue must be ex
 Stop here. No parent reserved evidence was read, no actual reserved fixtures/verdicts or seeds were created, no phase-B evidence inventory was started, and no Woo/merchant capture, role, engine implementation, commit or push was launched. Only temporary synthetic tests exercised reserved-style paths and verdicts. Discovery cycles remain 0/3.
 
 Next action, after an explicit phase-B mission: Antoine assisted by Codex inventories existing evidence and records established facts, missing facts and required measurements. Read that phase's actual brief then, archive what is actually used, and stop at its pre-implementation evidence checkpoint. Do not automatically launch implementation.
+
+## Documentation follow-up after checkpoint B — 2026-09-18
+
+Antoine authorized a separate documentation-only commit renaming this report to `setup-adjustment-report.md`, harmonizing its labels and updating the README/setup-note links. The phase-A results above remain historical. Parent checkpoint: `818bcfa6d8f85680c1aa64695614c69c9e221465`; all preparation input fingerprints, executable files, tests, seeds and evidence remain unchanged.
+
+For this one documentation commit, use the operator reference-checkpoint exception from `docs/delivery.md`, with this report as `ORIGINATOR_EXCEPTION_RECORD`. The normal hook remains enabled and runs full check. The only permitted failures are the four unchanged stub comparisons in `tests/fixtures.test.ts`: `lab-mirror-mixed`, `lab-two-percent-nonsequential`, `target-mixed-replay` and `target-transitions` (71 other tests passed at the parent checkpoint). Full check remains FAIL; clone business fidelity remains unverified. This authorization does not extend to implementation, further commits or publication.
