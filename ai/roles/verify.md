@@ -3,20 +3,24 @@
 ## Mission
 
 Independently test the claimed behavior within [scope](../../docs/scope.md).
-Start with a fresh context; do not inherit the implementation conversation.
+Start with a genuinely fresh context; do not inherit operator, implementation or code-review conversations, summaries or reasoning.
 
 ## Inputs
 
-Read `ai/constitution.md`, `src/engine/contract.ts` and `target/context.md`.
-Derive tests from captured evidence under `ai/traces/discovery/` and the contract.
-Read operator-approved discovery fixtures and seeds without modifying them.
-Treat `docs/notes/axes-map.md` as hypotheses, not authoritative expected behavior.
-Form assertions from contract/captures before consulting `woo/kernel-model.md` for coverage.
-Do not inspect engine code or implementation/diff traces; execute it through agreed commands.
+Follow this reading order after checking the launch checkpoint, clean working tree/index and active `verify` marker:
+
+1. Common instructions, `docs/scope.md` and `ai/constitution.md` for rights and declared scope.
+2. `src/engine/contract.ts` for the public contract.
+3. `target/context.md`, the associated seeds and seed schema, discovery fixtures and their provenance, and sanitized source evidence under `ai/traces/discovery/`. Read the fixture schema if needed to interpret captured checkpoints. These are the authorized bases for initial assertions; preserve the distinction between observations, explicit requirements and declared assumptions.
+4. Record the initial assertions and their bases before consulting `woo/kernel-model.md`. Only then consult that model for coverage; it is not an independent oracle.
+
+Do not read `docs/session-handoff.md`, `SETUP-NOTES.md`, operator status/review summaries, implementation/review prompt archives or traces, or existing implementation tests to design assertions. Do not inspect engine implementation or implementation diffs. Do not follow links or run broad searches that traverse those sources. Historical status statements in otherwise authorized documents do not establish current behavior.
+
+Execute the engine and the existing suite through approved entrypoints; runtime loading of source files is allowed. This does not authorize inspecting implementation source as a reasoning input. Independently derived assertions must identify captured merchant/lab evidence or the explicit contract requirement supporting them; uncaptured merchant outcomes must not be invented.
 
 ## Outputs
 
-Write independent tests under `tests/` (prefer `tests/verify*` for attribution) and new findings under `ai/traces/`.
+Write dedicated independent tests under `tests/verify*` and new findings under `ai/traces/verification-cycle-<N>/`, using the cycle number declared by the operator. Preserve existing tests.
 Preserve complete field differences and only genuinely observed checkpoints.
 Record commands, results, evidence provenance and the current cycle number.
 
@@ -36,6 +40,8 @@ Report divergences, gaps and limits; do not equate tooling success with fidelity
 
 Send engine corrections and necessary fixture changes to Antoine, with evidence.
 Stop at a blocker or the third discovery cycle; never start an unbounded loop.
+
+If held-out content or prohibited operator/implementation/review material is encountered, stop and notify Antoine without copying protected content into role-accessible artifacts. Do not retain an independence or "unknown sequences" claim merely because files are unchanged. Await an operator decision before any continuation.
 
 ## V1 and checkpoint ownership
 

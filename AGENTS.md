@@ -1,15 +1,15 @@
 # Repository instructions
 
 Read [scope](docs/scope.md) and the [constitution](ai/constitution.md).
-For the next explicitly authorized phase, read the [session handoff](docs/session-handoff.md); check its dated state against current Git status.
+Operator sessions only: read the [session handoff](docs/session-handoff.md) and check its dated state against current Git status. Role sessions follow their selected brief's reading order instead. In particular, `verify` must not read the operator handoff or inherited operator/implementation/review summaries. Links in authorized documents do not grant permission to follow them into prohibited material.
 The actionable phase-A pack and launch are archived verbatim in [ai/prompts/setup-adjustment/](ai/prompts/setup-adjustment/).
 Its shared rules supersede historical setup requirements. The old [setup request](ai/prompts/setup.md) is historical, not an execution brief.
 Archive executed missions and significant decisions, not individual commits; follow the [archival policy](ai/constitution.md#archival-policy). A checkpoint alone requires no new prompt.
 No runtime or reader command depends on the external coordination pack.
 Author repository content in English; preserve supplied evidence verbatim.
 
-This repository currently contains setup tooling and an unimplemented engine.
-Do not claim business fidelity from a green stub test suite.
+This repository contains setup tooling and the engine facade. Historical setup status and earlier reported test results are not acceptance criteria for the current role.
+Do not infer business fidelity from tooling checks alone.
 Use `pnpm check` as the full offline, non-mutating gate; business mismatches must fail.
 `pnpm check:prep` validates structure and reference readiness, never engine fidelity.
 No watch mode, CI, new dependencies or global/client configuration changes.
@@ -19,7 +19,7 @@ The reusable harness is `harness/`; the separate Woo adapter is `woo/`.
 Research notes are hypotheses, not an expanded specification.
 
 Only the operator selects a role with `./use-role.sh impl|verify|none`.
-Start a new Codex session at the repository root for each role; never resume or fork the other role's conversation.
+Start a genuinely new Codex session at the repository root for each role; never resume or fork an operator or other role's conversation, or import its summaries or reasoning.
 The generated `AGENTS.override.md` includes these common instructions and the active brief.
 No parallel roles, worktrees, agent pushes or automatic role launches.
 
@@ -36,4 +36,4 @@ At most three discovery implementation/verification cycles in total, tracked by 
 Run checks before proposing a commit. The operator commits from outside the role session.
 V1 lab coverage requires two percentage coupons with sequential discounts disabled; no other combination mode is in scope. This is not demonstrated merchant behavior.
 Stop at the current phase checkpoint; never chain phases or launch roles automatically.
-Read [SETUP-NOTES.md](SETUP-NOTES.md) for historical results and the phase-A alignment record. Unperformed live-client checks remain NOT RUN and are superseded, not prerequisites.
+Operator sessions only: read [SETUP-NOTES.md](SETUP-NOTES.md) for historical results and the phase-A setup adjustment record. These historical results are not verifier inputs. Unperformed live-client checks remain NOT RUN and are superseded, not prerequisites.
