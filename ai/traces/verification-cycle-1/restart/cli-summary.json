@@ -1,0 +1,28 @@
+[
+  {
+    "log": "scenario-lab-mirror-mixed.log",
+    "id": "lab-mirror-mixed",
+    "differences": []
+  },
+  {
+    "log": "scenario-lab-two-percent-nonsequential.log",
+    "id": "lab-two-percent-nonsequential",
+    "differences": []
+  },
+  {
+    "log": "scenario-target-mixed-replay.log",
+    "id": "target-mixed-replay",
+    "differences": []
+  },
+  {
+    "log": "scenario-target-transitions-reset-demo.log",
+    "id": "target-transitions",
+    "differences": [],
+    "identical": true
+  },
+  {
+    "log": "scenario-target-transitions.log",
+    "id": "target-transitions",
+    "differences": []
+  }
+]

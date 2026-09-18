@@ -1,4 +1,20 @@
-# Current operator handoff — optional version-pinned verifier reference, 2026-09-18
+# Current operator handoff — cycle 1 verification checkpoint, 2026-09-18
+
+Operator-only document; this handoff is not an input for verification sessions.
+
+Independent verification handed back from checkpoint `fa4acec5729b003ceeb3bf4a7dd64b3735bf3134`, with one new verifier test file and fourteen artifacts under `ai/traces/verification-cycle-1/restart/`. The verifier reported no confirmed defect in the tested scope and no blocking correction request. Its detailed findings remain attributed to the verifier; the operator did not analyze test design or technical reasoning.
+
+Operator checks confirmed authorized new paths, unchanged frozen inputs and a rerun of full `pnpm check` with 180/180 tests passing, including the 38 dedicated verifier tests. Four discovery CLI scenarios returned no differences; the target-transitions reset demo returned identical runs. The local role is inactive. The cost register records the verifier's approximately 15-minute estimate explicitly as an estimate, not measured active effort or a new budget. The initial failed command/test attempt remains preserved alongside the final results.
+
+Antoine authorized the single verification checkpoint commit containing this handoff. The normal pre-commit hook must pass without an exception. Engine, existing tests, seeds, contract, discovery evidence, model, adapter, harness and controls remain unchanged; only verifier additions and operator status/effort records are selected.
+
+The staged whitespace check is FAIL: `ai/traces/verification-cycle-1/restart/full-check-final.log:76` and `ai/traces/verification-cycle-1/restart/independent-tests.log:10` contain a new blank line at EOF; `ai/traces/verification-cycle-1/restart/mission.md:6` contains trailing whitespace. These original logs and mission bytes are preserved under the archival policy. No whitespace rules or permanent exemptions are changed; this result is separate from the required full-check hook result.
+
+**Stop after committing and verifying this checkpoint. Antoine has an outstanding point to address before freezing.** Do not prepare or perform the final freeze, access reserved recipes/outcomes, capture evidence, start another role, create another commit or push as a continuation of this authorization. No final evaluation has been performed.
+
+---
+
+# Historical operator handoff — optional version-pinned verifier reference, 2026-09-18
 
 Operator-only document: verification sessions must not read this handoff. Their launch prompt supplies the checkpoint, cycle and current-session trace location.
 

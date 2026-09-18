@@ -1,0 +1,22 @@
+
+> woo-clone@0.0.0 check /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> pnpm typecheck && pnpm lint && pnpm arch && pnpm fixtures:check && pnpm test
+
+
+> woo-clone@0.0.0 typecheck /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> tsc --noEmit
+
+tests/verify-phase-c-cycle1-restart.test.ts(133,29): error TS2345: Argument of type '{ lines: never[]; coupons: never[]; totals: { total_items: number; total_items_tax: number; total_discount: number; total_discount_tax: number; }; }' is not assignable to parameter of type 'CartProjection'.
+  The types of 'totals.total_items' are incompatible between these types.
+    Type 'number' is not assignable to type 'MinorUnits'.
+      Type 'number' is not assignable to type '{ readonly __brand: "MinorUnits"; }'.
+tests/verify-phase-c-cycle1-restart.test.ts(200,27): error TS2345: Argument of type '{ lines: never[]; coupons: never[]; totals: { total_items: number; total_items_tax: number; total_discount: number; total_discount_tax: number; }; }' is not assignable to parameter of type 'CartProjection'.
+  The types of 'totals.total_items' are incompatible between these types.
+    Type 'number' is not assignable to type 'MinorUnits'.
+      Type 'number' is not assignable to type '{ readonly __brand: "MinorUnits"; }'.
+tests/verify-phase-c-cycle1-restart.test.ts(231,27): error TS2345: Argument of type '{ lines: never[]; coupons: never[]; totals: { total_items: number; total_items_tax: number; total_discount: number; total_discount_tax: number; }; }' is not assignable to parameter of type 'CartProjection'.
+  The types of 'totals.total_items' are incompatible between these types.
+    Type 'number' is not assignable to type 'MinorUnits'.
+      Type 'number' is not assignable to type '{ readonly __brand: "MinorUnits"; }'.
+ ELIFECYCLE  Command failed with exit code 2.
+ ELIFECYCLE  Command failed with exit code 2.

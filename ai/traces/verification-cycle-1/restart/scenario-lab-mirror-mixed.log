@@ -1,0 +1,149 @@
+
+> woo-clone@0.0.0 scenario /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> node --import tsx src/cli.ts fixtures/discovery/lab-mirror-mixed.json
+
+{
+  "id": "lab-mirror-mixed",
+  "projection": {
+    "lines": [
+      {
+        "ref": "cafe-decouverte",
+        "variant": "250g-grains",
+        "qty": 1,
+        "line_subtotal": 946,
+        "line_subtotal_tax": 52,
+        "line_total": 851,
+        "line_total_tax": 47
+      },
+      {
+        "ref": "spatules",
+        "qty": 1,
+        "line_subtotal": 125,
+        "line_subtotal_tax": 25,
+        "line_total": 125,
+        "line_total_tax": 25
+      }
+    ],
+    "coupons": [
+      {
+        "code": "decouverte10",
+        "total_discount": 95,
+        "total_discount_tax": 5
+      }
+    ],
+    "totals": {
+      "total_items": 1071,
+      "total_items_tax": 77,
+      "total_discount": 95,
+      "total_discount_tax": 5
+    },
+    "decisions": [
+      {
+        "accepted": true,
+        "action_index": 0
+      },
+      {
+        "accepted": true,
+        "action_index": 1
+      },
+      {
+        "accepted": true,
+        "action_index": 2
+      }
+    ]
+  },
+  "checkpoints": [
+    {
+      "after_action": 0,
+      "projection": {
+        "lines": [
+          {
+            "ref": "cafe-decouverte",
+            "variant": "250g-grains",
+            "qty": 1,
+            "line_subtotal": 946,
+            "line_subtotal_tax": 52,
+            "line_total": 946,
+            "line_total_tax": 52
+          }
+        ],
+        "coupons": [],
+        "totals": {
+          "total_items": 946,
+          "total_items_tax": 52,
+          "total_discount": 0,
+          "total_discount_tax": 0
+        }
+      }
+    },
+    {
+      "after_action": 1,
+      "projection": {
+        "lines": [
+          {
+            "ref": "cafe-decouverte",
+            "variant": "250g-grains",
+            "qty": 1,
+            "line_subtotal": 946,
+            "line_subtotal_tax": 52,
+            "line_total": 946,
+            "line_total_tax": 52
+          },
+          {
+            "ref": "spatules",
+            "qty": 1,
+            "line_subtotal": 125,
+            "line_subtotal_tax": 25,
+            "line_total": 125,
+            "line_total_tax": 25
+          }
+        ],
+        "coupons": [],
+        "totals": {
+          "total_items": 1071,
+          "total_items_tax": 77,
+          "total_discount": 0,
+          "total_discount_tax": 0
+        }
+      }
+    },
+    {
+      "after_action": 2,
+      "projection": {
+        "lines": [
+          {
+            "ref": "cafe-decouverte",
+            "variant": "250g-grains",
+            "qty": 1,
+            "line_subtotal": 946,
+            "line_subtotal_tax": 52,
+            "line_total": 851,
+            "line_total_tax": 47
+          },
+          {
+            "ref": "spatules",
+            "qty": 1,
+            "line_subtotal": 125,
+            "line_subtotal_tax": 25,
+            "line_total": 125,
+            "line_total_tax": 25
+          }
+        ],
+        "coupons": [
+          {
+            "code": "decouverte10",
+            "total_discount": 95,
+            "total_discount_tax": 5
+          }
+        ],
+        "totals": {
+          "total_items": 1071,
+          "total_items_tax": 77,
+          "total_discount": 95,
+          "total_discount_tax": 5
+        }
+      }
+    }
+  ],
+  "differences": []
+}

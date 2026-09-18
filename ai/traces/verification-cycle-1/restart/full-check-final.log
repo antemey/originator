@@ -1,0 +1,76 @@
+
+> woo-clone@0.0.0 check /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> pnpm typecheck && pnpm lint && pnpm arch && pnpm fixtures:check && pnpm test
+
+
+> woo-clone@0.0.0 typecheck /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> tsc --noEmit
+
+
+> woo-clone@0.0.0 lint /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> biome check src harness woo tests scripts package.json tsconfig.json biome.json vitest.config.ts .dependency-cruiser.cjs .codex/hooks.json
+
+Checked 44 files in 29ms. No fixes applied.
+
+> woo-clone@0.0.0 arch /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> depcruise --config .dependency-cruiser.cjs src harness woo target
+
+
+✔ no dependency violations found (19 modules, 45 dependencies cruised)
+
+
+> woo-clone@0.0.0 fixtures:check /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> node --import tsx harness/checksums.ts verify
+
+Fixture and seed integrity verified (including synthetic files).
+
+> woo-clone@0.0.0 test /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> vitest run
+
+
+ RUN  v3.2.6 /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+
+ ✓ tests/delivery.test.ts (13 tests) 5619ms
+   ✓ prepare leaves an unbound plan and destinations unchanged after missing source, then accepts correction  1250ms
+   ✓ prepare leaves an unbound plan and destinations unchanged after wrong SHA, then accepts correction  900ms
+   ✓ prepare leaves an unbound plan and destinations unchanged after wrong HEAD, then accepts correction  865ms
+   ✓ prepare leaves an unbound plan and destinations unchanged after recipe mismatch, then accepts correction  911ms
+   ✓ prepare leaves an unbound plan and destinations unchanged after secret scan failure, then accepts correction  978ms
+   ✓ prepare refuses changes to an already-bound plan without changing freeze, state or verdict  684ms
+ ✓ tests/workflow-hooks.test.ts (4 tests) 674ms
+   ✓ pre-commit runs the full check and blocks failures  309ms
+ ✓ tests/role-policy.test.ts (8 tests) 294ms
+ ✓ tests/verify-phase-c-cycle1-restart.test.ts (38 tests) 42ms
+ ✓ tests/engine-seed.test.ts (37 tests) 19ms
+ ✓ tests/preparation.test.ts (5 tests) 11ms
+ ✓ tests/refusal.test.ts (18 tests) 9ms
+stdout | tests/heldout.test.ts > writes the first synthetic verdict and refuses to replace it
+Held-out evaluation recorded: exit 0; 1 cases.
+
+stderr | tests/heldout.test.ts > writes the first synthetic verdict and refuses to replace it
+Error: Original verdict already exists; refusing a second official evaluation
+
+stderr | tests/heldout.test.ts > refuses an empty directory without writing a verdict
+Error: No cases: official evaluation refused; no verdict created
+
+stdout | tests/heldout.test.ts > distinguishes a recorded divergence (2) from a technical error (1)
+Held-out evaluation recorded: exit 2; 1 cases.
+Held-out evaluation recorded: exit 1; 1 cases.
+
+stderr | tests/heldout.test.ts > rejects invalid input before evaluation and disallows synthetic official evidence
+Error: fixture.schema_version: required field missing
+Error: Synthetic cases cannot be an official evaluation
+
+ ✓ tests/heldout.test.ts (4 tests) 10ms
+ ✓ tests/engine-pricing.test.ts (14 tests) 8ms
+ ✓ tests/reset.test.ts (5 tests) 7ms
+ ✓ tests/fixtures.test.ts (5 tests) 6ms
+ ✓ tests/harness.test.ts (15 tests) 5ms
+ ✓ tests/adapter.test.ts (9 tests) 5ms
+ ✓ tests/money.test.ts (5 tests) 1ms
+
+ Test Files  14 passed (14)
+      Tests  180 passed (180)
+   Start at  18:58:36
+   Duration  8.08s (transform 103ms, setup 0ms, collect 211ms, tests 6.71s, environment 1ms, prepare 340ms)
+

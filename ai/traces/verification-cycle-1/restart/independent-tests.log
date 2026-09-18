@@ -1,0 +1,10 @@
+
+ RUN  v3.2.6 /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+
+ ✓ tests/verify-phase-c-cycle1-restart.test.ts (38 tests) 54ms
+
+ Test Files  1 passed (1)
+      Tests  38 passed (38)
+   Start at  18:57:57
+   Duration  186ms (transform 32ms, setup 0ms, collect 35ms, tests 54ms, environment 0ms, prepare 28ms)
+

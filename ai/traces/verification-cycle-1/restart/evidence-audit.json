@@ -1,0 +1,344 @@
+[
+  {
+    "fixture": "target-transitions",
+    "source": "phase-b-target-sequence.json",
+    "sha256": "f047838e8c7588fb03c0207387535fc6c26805ea31fe47a6b39e0e189adcceee",
+    "seed_file": "target/seed.json",
+    "checks": [
+      {
+        "kind": "decision",
+        "action_index": 0,
+        "source_label": "add-coffee",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 1,
+        "source_label": "add-accessory",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 2,
+        "source_label": "apply-decouverte10",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 3,
+        "source_label": "coffee-quantity-3",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 4,
+        "source_label": "coffee-quantity-1",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 5,
+        "source_label": "refuse-unknown-coupon",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 6,
+        "source_label": "remove-decouverte10",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 7,
+        "source_label": "reapply-decouverte10",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 8,
+        "source_label": "accessory-quantity-2",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 9,
+        "source_label": "remove-accessory",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 0,
+        "source_label": "add-coffee",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 1,
+        "source_label": "add-accessory",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 2,
+        "source_label": "apply-decouverte10",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 4,
+        "source_label": "coffee-quantity-1",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 5,
+        "source_label": "after-refusal",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 6,
+        "source_label": "remove-decouverte10",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 7,
+        "source_label": "reapply-decouverte10",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 8,
+        "source_label": "accessory-quantity-2",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 9,
+        "source_label": "remove-accessory",
+        "differences": []
+      },
+      {
+        "kind": "final",
+        "differences": []
+      }
+    ]
+  },
+  {
+    "fixture": "target-mixed-replay",
+    "source": "phase-b-target-replay.json",
+    "sha256": "c11407872d1e71b0eb7a72bc903b9fdeaba35f3e3f4232097551a5a45bc8323c",
+    "seed_file": "target/seed.json",
+    "checks": [
+      {
+        "kind": "decision",
+        "action_index": 0,
+        "source_label": "add-coffee",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 1,
+        "source_label": "add-accessory",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 2,
+        "source_label": "apply-decouverte10",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 0,
+        "source_label": "add-coffee",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 1,
+        "source_label": "add-accessory",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 2,
+        "source_label": "apply-decouverte10",
+        "differences": []
+      },
+      {
+        "kind": "final",
+        "differences": []
+      }
+    ]
+  },
+  {
+    "fixture": "lab-mirror-mixed",
+    "source": "phase-b-lab-mirror-cookie-session.json",
+    "sha256": "0cafd21ef6006ac98bc4943342400bc6974ad9ee0a81a48c562458259878f2ab",
+    "seed_file": "target/lab/mirror.json",
+    "checks": [
+      {
+        "kind": "decision",
+        "action_index": 0,
+        "source_label": "add-coffee",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 1,
+        "source_label": "add-accessory",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 2,
+        "source_label": "apply-decouverte10",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 0,
+        "source_label": "add-coffee",
+        "differences": []
+      },
+      {
+        "kind": "persisted GET",
+        "action_index": 0,
+        "source_label": "add-coffee-persisted",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 1,
+        "source_label": "add-accessory",
+        "differences": []
+      },
+      {
+        "kind": "persisted GET",
+        "action_index": 1,
+        "source_label": "add-accessory-persisted",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 2,
+        "source_label": "apply-decouverte10",
+        "differences": []
+      },
+      {
+        "kind": "persisted GET",
+        "action_index": 2,
+        "source_label": "apply-decouverte10-persisted",
+        "differences": []
+      },
+      {
+        "kind": "final",
+        "differences": []
+      }
+    ]
+  },
+  {
+    "fixture": "lab-two-percent-nonsequential",
+    "source": "phase-b-lab-interaction-measured.json",
+    "sha256": "7049a2919f757c6735d726a97a3cea64d2591e84fee71f4678ea9e88bbecc8a5",
+    "seed_file": "target/lab/two-percent-nonsequential.json",
+    "checks": [
+      {
+        "kind": "decision",
+        "action_index": 0,
+        "source_label": "add-coffee",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 1,
+        "source_label": "add-accessory",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 2,
+        "source_label": "apply-decouverte10",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 3,
+        "source_label": "apply-lab20",
+        "differences": []
+      },
+      {
+        "kind": "decision",
+        "action_index": 4,
+        "source_label": "remove-lab20",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 0,
+        "source_label": "add-coffee",
+        "differences": []
+      },
+      {
+        "kind": "persisted GET",
+        "action_index": 0,
+        "source_label": "add-coffee-persisted",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 1,
+        "source_label": "add-accessory",
+        "differences": []
+      },
+      {
+        "kind": "persisted GET",
+        "action_index": 1,
+        "source_label": "add-accessory-persisted",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 2,
+        "source_label": "apply-decouverte10",
+        "differences": []
+      },
+      {
+        "kind": "persisted GET",
+        "action_index": 2,
+        "source_label": "apply-decouverte10-persisted",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 3,
+        "source_label": "apply-lab20",
+        "differences": []
+      },
+      {
+        "kind": "persisted GET",
+        "action_index": 3,
+        "source_label": "apply-lab20-persisted",
+        "differences": []
+      },
+      {
+        "kind": "checkpoint",
+        "action_index": 4,
+        "source_label": "remove-lab20",
+        "differences": []
+      },
+      {
+        "kind": "persisted GET",
+        "action_index": 4,
+        "source_label": "remove-lab20-persisted",
+        "differences": []
+      },
+      {
+        "kind": "final",
+        "differences": []
+      }
+    ]
+  }
+]
