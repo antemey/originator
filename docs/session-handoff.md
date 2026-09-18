@@ -1,4 +1,18 @@
-# Current handoff — phase B review point, 2026-09-18
+# Current handoff — implementation checkpoint, cycle 1 of 3, 2026-09-18
+
+The implementation session has handed back its work and its role is inactive. Antoine authorized the operator checkpoint and commit. The commit containing this handoff records four engine files, five test files, the updated rule model and two implementation traces, based on `6ef398146251812b048b601277b928b8ffe4cf5b`. Phase-B reference checkpoint `818bcfa6d8f85680c1aa64695614c69c9e221465` remains unchanged.
+
+Operator checks: all 12 implementation paths are within role rights; the 29 preparation input fingerprint groups are unchanged. Full `pnpm check` was rerun successfully: typecheck, lint, architecture, fixture/seed integrity and 142/142 tests passed, including all four discovery comparisons. The normal pre-commit hook is required without a checkpoint exception. These command results do not replace independent verification. Operator review is limited to paths, fingerprints, command results and commit authorization; it does not assess implementation reasoning.
+
+Gitleaks scanned the staged-file export with redacted output and found no secrets. Staged whitespace check: FAIL for one trailing space at `ai/traces/implementation-cycle-1/brief.md:46`. The received prompt archive is preserved byte-for-byte; no whitespace rule was changed and this check is not reported as PASS. This finding is separate from the passing full project gate.
+
+Next: Antoine selects a genuinely fresh `verify` session in `repo/` from this committed checkpoint. Cycle 1 verification is pending. Do not resume or fork the operator or implementation conversation; do not transmit implementation/reviewer explanations, summaries, prompt archives or traces to verification. Follow the verification brief: derive assertions from the public contract and authorized evidence before consulting the rule model for coverage. Reserved recipes/outcomes must not be read or copied indirectly into role contexts. If accidental exposure occurs, stop, report it without reproducing protected content, and await an operator decision; unchanged files do not preserve an "unknown sequences" claim after exposure.
+
+No verification role, final-delivery freeze, official evaluation or push has been initiated by this checkpoint. Earlier handoffs below are historical; their stub status, pending preparation and one-commit exceptions are superseded for the current checkpoint.
+
+---
+
+# Historical handoff — phase B review point, 2026-09-18
 
 Operator only; no impl/verify role active. The isolated tooling repair is committed as `b33fce531e5de61fda298c2de273e1207408b1ba` (`fix: preserve setup state on validation failures`), following phase-A commit `a49874f`. Its four-file selection passed the full 67-test gate in an export without phase-B changes and through the normal pre-commit hook. Only one repair commit was created; no push.
 

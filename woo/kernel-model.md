@@ -1,4 +1,4 @@
-# Kernel model — prepared candidate, not verified clone behaviour
+# Kernel model — prepared evidence and cycle 1 implementation
 
 - reference_source_revision: WooCommerce release archive `10.1.2`, SHA-256 `9b8737d3c0bf2e4f31081785a51728eef58dd2c34a874aa5e2075a31361142ad`; Git commit not independently resolved.
 - reference_woo_version: 10.1.2.
@@ -7,6 +7,8 @@
 - target_version_evidence: Store API route/response shape only; no authenticated or reliable version identification.
 
 Pinned native source is the official plugin archive `https://downloads.wordpress.org/plugin/woocommerce.10.1.2.zip`. Paths below are relative to that archive's `woocommerce/` directory. The lab runs those files unchanged. Captures are under `ai/traces/discovery/`; hashes and explicit fixture/seed associations are in fixture provenance and the manifest.
+
+The following table preserves the preparation-stage observations and verdicts. Cycle 1 implementation details and subsequent checks follow below.
 
 | ID / rule | Scope and seed field | Observation | Alternatives / hypothesis | Discriminating test and evidence types | Verdict / WRITEUP zone |
 | --- | --- | --- | --- | --- | --- |
@@ -20,4 +22,22 @@ Pinned native source is the official plugin archive `https://downloads.wordpress
 
 The first lab configuration attempt used an obsolete tax-class option; native class creation corrected it. The cookie-free local Cart-Token protocol lost cart continuity even with a persisted-GET check; its cause remains unresolved. Cookie/Nonce guest sessions retained state and were used for accepted local captures. These failures are recorded in the preparation inventory and are not classified as merchant-specific differences.
 
-No clone pricing algorithm has been implemented. Implementation may add precise algorithm details and counterexamples, but must preserve these reference observations, fixed settings, confidence limits and the original failed experiments. Before roles, Antoine reviews projections and records the pre-implementation checkpoint. No unseen outcomes are available during development.
+## Cycle 1 implementation rules (2026-09-18)
+
+These rules were formalized before engine edits. Discovery inputs remain unchanged. Only the current implementation brief and allowed references were used; operator conversation histories, handoff summaries and reserved recipes were not imported.
+
+Source cross-check: official [WooCommerce 10.1.2 source](https://github.com/woocommerce/woocommerce/tree/10.1.2/plugins/woocommerce). Source-tree line numbers differ from the release archive references above; function names identify the same rules. `WC_Discounts::apply_coupon_percent` floors each original inclusive line's percentage, then reconciles against the coupon-wide rounded percentage by allocating remaining cents in descending unit-price order. `WC_Cart_Totals::sort_coupons_callback` calculates percentages in ascending amount order, independently of display/application order. No sequential mode is implemented.
+
+Precision and rounding: retain exact source integers through quantity multiplication. Internal amounts use integer units of 10^-6 cents (10^-8 EUR). `WC_ROUNDING_PRECISION` is 6 in `class-woocommerce.php::define_constants`; `wc_add_number_precision` rounds cents to four decimal places, exactly preserving the prepared six-decimal EUR inputs. Single inclusive tax is gross × rate / (100 + rate), rounded half up to six decimal places of cents (`WC_Tax::calc_inclusive_tax`). Subtract that intermediate tax before rendering net amounts half up to cents. Line taxes round half down for inclusive prices (`WC_Item_Totals::round_line_tax`, `wc_round_tax_total`, native tax mode 2). Percentage reconciliation also rounds half down (native discount mode 2). Render coupon components separately, but sum their unrendered components before rounding aggregate discounts. Never derive cart discounts by adding displayed coupons, or infer a discounted line's tax by subtracting rounded coupon taxes.
+
+Bounds: source integer ≤ 10,000,000,000; prepared quantity ≤ 3 (seed bounds can be smaller); rates 5.5% or 20%; percentage inputs 10 or 20. A line's internal gross is ≤ 3×10^12 and its tax numerator ≤ 6×10^14, safely below 2^53. Checked integer additions/multiplications reject arithmetic overflow before state replacement. No floating-point epsilon, decimal dependency or bigint is needed. Synthetic tooling is explicitly unsupported for business computation rather than assigned invented tax settings.
+
+Transitions: exact reference/variant identity, additive `add`, absolute `set_qty`, explicit removal, normalized coupon case, eligibility from `eligible_ref`. A source-derived initial add of a sold-individually product normalizes positive quantity to one (`CartController::filter_request_data`); this is not a newly observed merchant outcome. Existing sold-individually quantity increases refuse using the captured `readonly_quantity` template and seed product name. Unknown coupon refusal uses the captured template with the normalized requested code, not a fixture-specific literal. Other uncaptured refusals carry a code without invented localized messages. Accessory quantities above seed bounds are outside the clone domain, not a claim about native stock. Duplicate/ineligible coupon application is refused, as supported by `CartController::apply_coupon` and `WC_Discounts` eligibility validation. Removal of eligibility causes recalculation; applied coupon lifecycle must follow the native cart rules, not cached prices.
+
+Reset validates and copies a seed, then discards all lines/coupons. Dispatch validates and calculates a candidate state before committing it; refusal leaves existing state intact. Snapshot copies nested arrays, rows and totals. Unknown settings are refused explicitly; malformed or unsupported reset inputs throw without replacing current state (the frozen reset signature has no result channel).
+
+Evidence-backed target claims remain limited to the captured decisions and projections in `phase-b-target-sequence.json` and `phase-b-target-replay.json`. Lab combination claims refer only to `phase-b-lab-interaction-measured.json`; mirror evidence is separate. Source-derived behavior and implementation contract tests do not establish additional merchant fidelity. No merchant stock/configuration is inferred.
+
+Review correction: displayed coupon net and tax components also round half down, through `WC_Cart::get_coupon_discount_amount`, `get_coupon_discount_tax_amount` and `wc_cart_round_discount`. `CartCouponSchema::get_item_response` uses these getters. Aggregate fields instead render the sum of unrounded components half up through `CartSchema::get_totals`. The source-derived 0.30 EUR / 20% tax / 10% coupon probe exposed an implementation error: coupon components were 3/1 cents instead of 2/0, while aggregate 3/1 was correct. The failing test was retained and the coupon rendering corrected; original discovery expectations were untouched.
+
+Coupon lifecycle source cross-check: `CartSchema::get_item_response` calls `get_cart_errors` before building its response; `CartController::validate_cart_coupon` removes invalid coupons and recalculates. The engine therefore removes coupons when their last eligible line disappears. A source-derived test covers removal and re-addition without reviving the coupon; this has no corresponding merchant capture.
