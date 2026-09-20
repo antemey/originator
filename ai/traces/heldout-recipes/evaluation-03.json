@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "evaluation-03",
+  "provenance": "target",
+  "source": {
+    "date": "2026-09-18T12:16:51Z",
+    "url": "https://www.latelierdescafes.com/wp-json/wc/store/v1/cart",
+    "action_channel": "Operator pre-registration only; no action request or outcome capture performed."
+  },
+  "context": {
+    "country": "FR",
+    "role": "guest",
+    "currency": "EUR",
+    "currency_minor_unit": 2,
+    "prices_include_tax": true
+  },
+  "seed_file": "target/seed.json",
+  "actions": [
+    {
+      "type": "add",
+      "ref": "cafe-decouverte",
+      "variant": "250g-grains",
+      "qty": 1
+    },
+    {
+      "type": "apply_coupon",
+      "code": "DECOUVERTE10"
+    },
+    {
+      "type": "set_qty",
+      "ref": "cafe-decouverte",
+      "variant": "250g-grains",
+      "qty": 2
+    },
+    {
+      "type": "set_qty",
+      "ref": "cafe-decouverte",
+      "variant": "250g-grains",
+      "qty": 1
+    }
+  ],
+  "notes": "Operator-only action pre-registration. Start this recipe in its own fresh empty guest cart in France (FR), Paris/75001, EUR/2. Use the existing target reference identities and target/seed.json. Execute exactly the listed actions in order. Capture an actual cart checkpoint after every action, including a refused action if one occurs. Zero-based after_action positions: 0, 1, 2, 3. Record each actual action response separately. No expected decisions, monetary values, coupon persistence or other outcomes are registered. The inclusive-price context field is the existing candidate seed assumption, not an identified merchant setting."
+}

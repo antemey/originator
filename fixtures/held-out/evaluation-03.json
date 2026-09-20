@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "id": "evaluation-03",
+  "provenance": "target",
+  "source": {
+    "date": "2026-09-20T12:34:32.340Z",
+    "url": "https://www.latelierdescafes.com/wp-json/wc/store/v1/cart",
+    "capture_hash": "730860ef43599f3943ecb09a905734182ab07b64fab287a3d599efc06c3a3fe9",
+    "action_channel": "Existing headed guest browser, selective Woo cookie/cache reset, browser cookies and standard Store API Nonce; POST responses plus actual GET after every action."
+  },
+  "context": {
+    "country": "FR",
+    "role": "guest",
+    "currency": "EUR",
+    "currency_minor_unit": 2,
+    "prices_include_tax": true
+  },
+  "seed_file": "target/seed.json",
+  "actions": [
+    {
+      "type": "add",
+      "ref": "cafe-decouverte",
+      "variant": "250g-grains",
+      "qty": 1
+    },
+    {
+      "type": "apply_coupon",
+      "code": "DECOUVERTE10"
+    },
+    {
+      "type": "set_qty",
+      "ref": "cafe-decouverte",
+      "variant": "250g-grains",
+      "qty": 2
+    },
+    {
+      "type": "set_qty",
+      "ref": "cafe-decouverte",
+      "variant": "250g-grains",
+      "qty": 1
+    }
+  ],
+  "expected": {
+    "lines": [
+      {
+        "ref": "cafe-decouverte",
+        "variant": "250g-grains",
+        "qty": 1,
+        "line_subtotal": 946,
+        "line_subtotal_tax": 52,
+        "line_total": 851,
+        "line_total_tax": 47
+      }
+    ],
+    "coupons": [
+      {
+        "code": "decouverte10",
+        "total_discount": 95,
+        "total_discount_tax": 5
+      }
+    ],
+    "totals": {
+      "total_items": 946,
+      "total_items_tax": 52,
+      "total_discount": 95,
+      "total_discount_tax": 5
+    },
+    "decisions": [
+      {
+        "action_index": 0,
+        "accepted": true
+      },
+      {
+        "action_index": 1,
+        "accepted": true
+      },
+      {
+        "action_index": 2,
+        "accepted": false,
+        "code": "readonly_quantity",
+        "message": "La quantité de « Café Découverte - 250g » ne peut pas être modifiée"
+      },
+      {
+        "action_index": 3,
+        "accepted": true
+      }
+    ]
+  },
+  "checkpoints": [
+    {
+      "after_action": 0,
+      "expected": {
+        "lines": [
+          {
+            "ref": "cafe-decouverte",
+            "variant": "250g-grains",
+            "qty": 1,
+            "line_subtotal": 946,
+            "line_subtotal_tax": 52,
+            "line_total": 946,
+            "line_total_tax": 52
+          }
+        ],
+        "coupons": [],
+        "totals": {
+          "total_items": 946,
+          "total_items_tax": 52,
+          "total_discount": 0,
+          "total_discount_tax": 0
+        }
+      }
+    },
+    {
+      "after_action": 1,
+      "expected": {
+        "lines": [
+          {
+            "ref": "cafe-decouverte",
+            "variant": "250g-grains",
+            "qty": 1,
+            "line_subtotal": 946,
+            "line_subtotal_tax": 52,
+            "line_total": 851,
+            "line_total_tax": 47
+          }
+        ],
+        "coupons": [
+          {
+            "code": "decouverte10",
+            "total_discount": 95,
+            "total_discount_tax": 5
+          }
+        ],
+        "totals": {
+          "total_items": 946,
+          "total_items_tax": 52,
+          "total_discount": 95,
+          "total_discount_tax": 5
+        }
+      }
+    },
+    {
+      "after_action": 2,
+      "expected": {
+        "lines": [
+          {
+            "ref": "cafe-decouverte",
+            "variant": "250g-grains",
+            "qty": 1,
+            "line_subtotal": 946,
+            "line_subtotal_tax": 52,
+            "line_total": 851,
+            "line_total_tax": 47
+          }
+        ],
+        "coupons": [
+          {
+            "code": "decouverte10",
+            "total_discount": 95,
+            "total_discount_tax": 5
+          }
+        ],
+        "totals": {
+          "total_items": 946,
+          "total_items_tax": 52,
+          "total_discount": 95,
+          "total_discount_tax": 5
+        }
+      }
+    },
+    {
+      "after_action": 3,
+      "expected": {
+        "lines": [
+          {
+            "ref": "cafe-decouverte",
+            "variant": "250g-grains",
+            "qty": 1,
+            "line_subtotal": 946,
+            "line_subtotal_tax": 52,
+            "line_total": 851,
+            "line_total_tax": 47
+          }
+        ],
+        "coupons": [
+          {
+            "code": "decouverte10",
+            "total_discount": 95,
+            "total_discount_tax": 5
+          }
+        ],
+        "totals": {
+          "total_items": 946,
+          "total_items_tax": 52,
+          "total_discount": 95,
+          "total_discount_tax": 5
+        }
+      }
+    }
+  ],
+  "notes": "Candidate evidence from exact preregistered actions and actual merchant responses. No clone or discovery-outcome comparison. Operator-authorized FR-only acquisition precondition; no city/postcode initialization. Reset and empty-guest-cart preflight are recorded separately from registered actions."
+}
