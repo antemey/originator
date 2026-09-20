@@ -1,4 +1,49 @@
-# Current operator handoff — cycle 1 verification checkpoint, 2026-09-18
+# Current operator handoff — final pre-freeze checkpoint, 2026-09-20
+
+Operator-only document; this handoff is not an input for `impl` or `verify` sessions.
+
+The accepted verification checkpoint is `937626b`. Independent verification is committed, the full project check passes with 180 tests, the repository was reported clean at handoff, and no role is active. No final freeze, held-out capture/evaluation or remote push has been performed.
+
+The final pre-freeze sufficiency review concluded **SUFFICIENT WITH EXPLICIT LIMITATIONS**. The implemented V1 slice is considered substantively adequate for the assignment and sufficiently supported by merchant evidence, Woo laboratory evidence, contract properties and independent verification within its declared boundaries. These limits remain part of the final WRITEUP and are not blockers: merchant coffee pricing is directly observed only at quantity 1; quantity recalculation is directly observed on the accessory; multiple-coupon behaviour is lab-only with sequential discounts disabled; the merchant's exact eligibility mechanism and some price/rounding configuration details remain unproven; arbitrary sub-cent cases, allocation across multiple eligible lines, shipping, fees and gifts/BOGO remain outside demonstrated V1 coverage.
+
+A bounded prospective quick-win scan was completed for `Next two days and scaling`. It identified removal/restoration of the last coupon-eligible item as the strongest adjacent extension, sale-price × `DECOUVERTE10` as another plausible small extension, and shipping-threshold interactions as a larger subsystem. No candidate requires reopening V1 before freeze.
+
+Before final freeze, the operator must still:
+
+1. confirm the actual current `HEAD`, working tree, index and inactive role state;
+2. review all modified/new paths since `937626b` against authorized ownership and expected operator/documentation work;
+3. confirm protected preparation inputs and required fingerprints remain unchanged unless an explicitly authorized amendment exists;
+4. run the required project and integrity checks;
+5. review the exact staged selection and commit only the authorized final pre-freeze changes after Antoine's approval;
+6. verify the resulting commit, hook result and clean repository state.
+
+Any material change to engine behaviour, tests, contract, seeds, discovery references, adapter, harness or executable controls requires explicit operator review before freeze. Do not silently reseal, redefine scope or reopen discovery, implementation or verification.
+
+Only from the reviewed clean pre-freeze commit may Antoine authorize the first stage of `./deliver.sh prepare`. That stage records the frozen commit, executable/input fingerprints and preregistered recipe commitments, then **stops before any held-out capture, import or evaluation**.
+
+After freeze: capture the preregistered merchant recipes and contemporary discovery control replay; sanitize and review the evidence; perform the single official evaluation; preserve the first verdict including divergences; do not tune the frozen engine from held-out results; finalize the WRITEUP and packaging; audit the exact delivery commit from a fresh clone and scan delivered files/history; Antoine alone performs the final remote push or export.
+
+If a new issue requires business analysis, test-design judgment or implementation changes, stop the affected operator action and route it to an appropriately scoped session before freezing.
+
+## Operator checkpoint audit — 2026-09-20
+
+Observed HEAD: `937626b535211c981935b17d8f1f41c2bf54b5de` on `main`; index empty. At entry, only this handoff was modified and no untracked files were reported. `AGENTS.override.md` and `.codex/config.toml` are absent, so no role is selected. Repository-local hooks point to `scripts/git-hooks`, with executable pre-commit and pre-push entrypoints. No repository freeze, delivery state or official verdict exists. Repository held-out directory metadata contains no non-placeholder entry; no reserved outcomes or external reserved files were read.
+
+All 85 files covered by `harness/freeze.ts` match the accepted verification checkpoint byte-for-byte, with no additions or deletions. All 29 published preparation object IDs match their original `818bcfa` checkpoint. Against current HEAD, 26 remain identical; the three changed entries (`ai/roles`, `AGENTS.md`, `ai/constitution.md`) are accounted for by the already accepted verifier-isolation/reference corrections in `7d302d6` and `fa4acec`. No new protected-input amendment or reseal is proposed. Published recipe commitments are unchanged; external recipe bytes were not revalidated in this audit.
+
+`corepack pnpm@10.11.0 check` passed: typecheck, lint (44 files), architecture (19 modules / 45 dependencies), fixture/seed manifest integrity and 180 tests across 14 files, including 38 dedicated verifier tests. The separate readiness entrypoint `node --import tsx harness/check-preparation.ts` passed with 2 target, 2 lab, 1 synthetic fixture and 4 seeds, with no blockers; readiness does not evaluate engine fidelity. Delivery/evaluation tests used temporary synthetic data only. `git diff --check` passed.
+
+The proposed commit selection is exactly `docs/session-handoff.md` and `docs/notes/cost-register.md`: current handoff, audit results and the required effort record. No engine, test, reference or executable change is included. No technical blocker was found within this audit. Staging, commit, actual commit-hook result and resulting clean-state verification remain pending Antoine's approval/action. The sufficiency conclusion and its explicit limitations remain closed and unchanged.
+
+## Immediate next action
+
+Present the exact two-file selection above to Antoine. Do not stage or commit before his approval. After the approved operator commit, verify its contents, actual hook result and clean state; stop before freeze. If resuming in another session, read only this current handoff section and recheck the actual Git state before acting.
+
+Do not run the final freeze until Antoine explicitly authorizes it.
+
+---
+
+# Historical operator handoff — cycle 1 verification checkpoint, 2026-09-18
 
 Operator-only document; this handoff is not an input for verification sessions.
 
