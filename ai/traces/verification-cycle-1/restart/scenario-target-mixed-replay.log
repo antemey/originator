@@ -1,5 +1,5 @@
 
-> woo-clone@0.0.0 scenario /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> woo-clone@0.0.0 scenario <REPO_ROOT>
 > node --import tsx src/cli.ts fixtures/discovery/target-mixed-replay.json
 
 {

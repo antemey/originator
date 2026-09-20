@@ -1,34 +1,34 @@
 
-> woo-clone@0.0.0 check /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> woo-clone@0.0.0 check <REPO_ROOT>
 > pnpm typecheck && pnpm lint && pnpm arch && pnpm fixtures:check && pnpm test
 
 
-> woo-clone@0.0.0 typecheck /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> woo-clone@0.0.0 typecheck <REPO_ROOT>
 > tsc --noEmit
 
 
-> woo-clone@0.0.0 lint /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> woo-clone@0.0.0 lint <REPO_ROOT>
 > biome check src harness woo tests scripts package.json tsconfig.json biome.json vitest.config.ts .dependency-cruiser.cjs .codex/hooks.json
 
 Checked 44 files in 29ms. No fixes applied.
 
-> woo-clone@0.0.0 arch /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> woo-clone@0.0.0 arch <REPO_ROOT>
 > depcruise --config .dependency-cruiser.cjs src harness woo target
 
 
 ✔ no dependency violations found (19 modules, 45 dependencies cruised)
 
 
-> woo-clone@0.0.0 fixtures:check /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> woo-clone@0.0.0 fixtures:check <REPO_ROOT>
 > node --import tsx harness/checksums.ts verify
 
 Fixture and seed integrity verified (including synthetic files).
 
-> woo-clone@0.0.0 test /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+> woo-clone@0.0.0 test <REPO_ROOT>
 > vitest run
 
 
- RUN  v3.2.6 /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+ RUN  v3.2.6 <REPO_ROOT>
 
  ✓ tests/delivery.test.ts (13 tests) 5619ms
    ✓ prepare leaves an unbound plan and destinations unchanged after missing source, then accepts correction  1250ms

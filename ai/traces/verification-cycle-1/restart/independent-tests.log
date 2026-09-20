@@ -1,5 +1,5 @@
 
- RUN  v3.2.6 /Users/antoinem/Documents/00_Projects/xx_ORIGINATOR/repo
+ RUN  v3.2.6 <REPO_ROOT>
 
  ✓ tests/verify-phase-c-cycle1-restart.test.ts (38 tests) 54ms
 

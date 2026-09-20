@@ -1,65 +1,82 @@
-# Woo clone — setup scaffold
+# WooCommerce Discount Engine Replication
 
-This repository prepares a deterministic, resettable replication of a narrow cart/coupon slice for L'Atelier des Cafés. **The engine is a stub. No business fidelity has been evaluated.** The three deliverables are the write-up (`WRITEUP.md`), executable evidence (engine, CLI and tests), and the agent artifacts actually used (`AGENTS.md`, `ai/`, role scripts and controls).
+Deterministic in-memory TypeScript replication of a bounded pricing slice from **L’Atelier des Cafés**.
 
-## Install & check
+The clone covers supported cart transitions, coupon decisions, item discounts, taxes and rounding for a guest customer in France. Shipping, fees, checkout and most of the catalogue are outside scope.
 
-Prerequisites: Node **22.16.0** (`.node-version`), Corepack **0.32.0** or a compatible installation, and pnpm **10.11.0** (`packageManager`). Dependency versions are pinned in `package.json` and `pnpm-lock.yaml`. No runtime dependency, bundler, database or framework is required.
+For the best reading experience, start with [`WRITEUP.pdf`](docs/WRITEUP.pdf). The same write-up is also available as [`WRITEUP.md`](WRITEUP.md), which is the source used by the repository's delivery checks.
 
-```sh
-pnpm install --frozen-lockfile
-pnpm check
+## Quick start
+
+Prerequisites:
+
+- Node.js 22.16.0 (pinned in `.node-version`)
+- Corepack
+- Git
+- a POSIX-compatible shell environment
+
+```bash
+corepack pnpm@10.11.0 install --frozen-lockfile
+corepack pnpm@10.11.0 check
 ```
 
-If `pnpm` is absent from your PATH, use `corepack pnpm@10.11.0` in place of `pnpm` for both commands. Installation creates pnpm shims only in this repository's ignored `node_modules/.bin`, so nested checks work without changing global configuration. Package download may need network access; `pnpm check` needs neither network nor Docker after installation. The unused esbuild install script remains disabled by pnpm; the installed platform binary is exercised by the tests.
+`check` runs type checking, linting, architecture checks, fixture/seed integrity and the full test suite.
 
-`pnpm check` runs strict TypeScript (including checked JavaScript workflow scripts), lint, architecture rules, fixture/seed integrity and tests. It executes non-synthetic discovery cases when present. At setup it explicitly reports:
+Apart from installing the public npm dependencies, the normal review path does **not** require Docker, the live merchant, browser automation, or private environment configuration.
 
-> 0 real scenarios: tooling verified, business fidelity not evaluated.
+Run one merchant scenario:
 
-## Scenario & reset
-
-```sh
-pnpm -s scenario fixtures/discovery/_example.json
-pnpm -s scenario --reset-demo fixtures/discovery/_example.json
+```bash
+corepack pnpm@10.11.0 -s scenario fixtures/discovery/target-mixed-replay.json
 ```
 
-The CLI itself emits JSON on stdout and diagnostics on stderr. `-s` suppresses pnpm's script banner when piping stdout to a JSON parser. The first mode validates the fixture and its selected seed, executes the engine and reports decisions, projection, captured checkpoints and exact differences. Exit 1 means divergence or invalid input. An explicitly passed synthetic file is runnable; it never counts as business evidence.
+Demonstrate deterministic reset/replay:
 
-Reset demo executes twice with a reset before each run and reports `identical`. This checks repeatability, not correctness; fidelity differences remain visible in each run. The stub returns `NOT_IMPLEMENTED` for recognized actions and `OUT_OF_SCOPE` for unsupported inputs/unknown product references. Refusals do not change the cart and remain in the decision trace. Monetary values are safe integer minor units, never silently rounded or defaulted to zero.
+```bash
+corepack pnpm@10.11.0 -s scenario --reset-demo fixtures/discovery/target-transitions.json
+```
 
-The verification schema requires an expected projection; the CLI also accepts a structurally valid exploratory fixture without an expectation. Decision indices and checkpoint indices are zero-based. A configured seed must match fixture context; seeds resolve only under `target/`.
+## Reviewer path
 
-## Layout
+If you only have a few minutes:
 
-- `src/engine/`: shared public contract, branded money and empty engine facade; `src/cli.ts`: wiring.
-- `harness/`: input validation, exact comparison, checksums and the operator's single official held-out runner.
-- `target/`, `fixtures/`: unconfigured merchant seed, synthetic tooling data, provenance and checksum manifest.
-- `woo/`: a field-only Store API adapter and a rules/provenance template.
-- `ai/`, `scripts/`, `.codex/hooks.json`: portable role briefs, setup prompt, supplied evidence and local Git workflow controls.
+1. Read [`WRITEUP.pdf`](docs/WRITEUP.pdf) — or [`WRITEUP.md`](WRITEUP.md).
+2. Run `corepack pnpm@10.11.0 check`.
+3. Read [`VERDICTS.md`](VERDICTS.md).
+4. Run one scenario above.
 
-Read [scope](docs/scope.md) and [setup results](SETUP-NOTES.md) before continuing.
+The official held-out evaluation is complete: **3 preregistered merchant scenarios passed with no differences**. `VERDICTS.md` is the original one-time verdict; normal checks do not rerun it.
 
-## Working traces
+## Engine
 
-`research/` (local Woo lab) and `docs/notes/` (axes map, cost register) are working traces included as delivered; fidelity claims are bounded in `WRITEUP.md`. Target, lab and derived evidence remain distinct. Synthetic data is tooling only.
+```ts
+reset(seed: Seed): void
+dispatch(action: Action): Result
+snapshot(): CartProjection
+```
 
-The supplied JSON and five PNGs are preserved under `ai/traces/discovery/`. The [axes map](docs/notes/axes-map.md) is a faithful English translation of the supplied v0.1 note, with empty verdicts and unvalidated hypotheses. It does not expand scope. The original assignment and setup brief remain outside the repository.
+State is kept in memory only. Refused actions do not mutate the cart. The engine does not read fixtures or expected results.
 
-Antoine selects `./use-role.sh impl` or `./use-role.sh verify`, then opens a fresh Codex session using the printed command. Never resume/fork the other role's conversation or run the roles concurrently. `./use-role.sh none` removes only generated local role files. Both role briefs are portable; no fine-grained client configuration is generated. The `.mjs` bootstrap/hook files run directly in Node and are checked under the same strict TypeScript settings through JSDoc and `checkJs`.
+## Repository map
 
-The earlier live-client sandbox/hook/sentinel prerequisite is superseded. Unperformed checks remain NOT RUN. Install local Git workflow hooks with `pnpm hooks:install`: full `pnpm check` before commits and blocked workflow pushes. No global/client configuration changes. Antoine records a clean checkpoint before each role and reviews tracked changes plus new files afterwards. These are workflow controls, not system isolation; keep reserved evidence outside role access. The operator commits outside role sessions. See [checkpoint exceptions and publication](docs/delivery.md).
+| Path | Purpose |
+|---|---|
+| `src/` | cart and pricing engine |
+| `target/` | bounded merchant profile and seeds |
+| `fixtures/` | discovery and post-freeze held-out references |
+| `VERDICTS.md` | official held-out result |
+| `ai/` | prompts, roles and selected traces |
+| `research/` | local WooCommerce reference lab |
+| `docs/` | rendered write-up, scope, delivery and historical notes |
 
-`pnpm check:prep` runs structural checks and explicitly selected tooling/adapter tests, then validates every discovery fixture and seed, explicit seed selection, required provenance and at least one complete direct-target fixture with a configured café seed. It reports validated counts and never evaluates engine fidelity. It currently exits nonzero because real inputs are missing. A pre-engine reference checkpoint may have green `check:prep` and red full `check`; only Antoine may authorize a documented checkpoint exception. Accepted implementation and delivery still require full `check`.
+For provenance, see [`fixtures/PROVENANCE.md`](fixtures/PROVENANCE.md).
 
-## Verification limits
+## Scope limits
 
-No merchant request, new capture, reference container or business implementation occurred during setup. The target seed is empty, the rules document is a template and the write-up contains only headings. The later lab seed must independently exercise two percentage coupons with sequential discounts disabled (the only supported combination mode); that will not establish merchant support for coupon stacking.
+Demonstrated scope: guest, FR, EUR, prepared products/coupon configuration and item-level pricing.
 
-Neither role may read held-out evidence, run `pnpm heldout` or reseal fixtures. During a role session, integrity checks enumerate discovery and seeds only and refuse a manifest containing published held-out paths; they do not attempt to read the denied held-out directory. Outside roles, integrity checks include published held-out files without replaying their official evaluation. Roles cannot be activated after the final freeze or held-out publication.
+Shipping, fees, checkout, most of the catalogue and successful coffee pricing above quantity 1 are not claimed. Captured refusals of larger coffee quantity requests are included. Multiple-coupon behaviour was measured only in the local Woo lab.
 
-`pnpm check` being green never overrides a published divergence. After final evaluation, consult `VERDICTS.md` and reproduce any case independently with `pnpm -s scenario <fixture>`; this replay does not alter the original verdict. Official held-out exit codes are 0 (complete/no difference), 2 (complete/recorded divergences), and 1 (technical, invalid or incomplete evaluation). An empty directory never creates a verdict.
+Some historical preparation files describe earlier project states; current claims are those in `docs/WRITEUP.pdf` / `WRITEUP.md`, `VERDICTS.md` and the published fixtures.
 
-The operator-only [delivery procedure](docs/delivery.md) separates `prepare` and `finalize`, records the freeze before held-out capture and pauses, resumes reviewed imports, commits packaging before a fresh clone audit, and scans history plus delivered files. It has not been run on this setup. Gitleaks is a local prerequisite, not an npm dependency. No agent pushes.
-
-The initial setup (`ai/prompts/setup.md`) and targeted setup adjustment (`ai/prompts/setup-adjustment/`) are versioned historical annexes included in delivery; historical prompts are not active requirements. Subsequent archives retain executed missions and significant decisions, including useful failures, under the [archival policy](ai/constitution.md#archival-policy). A brief may cover several checkpoints without duplication. No reader/runtime command depends on `../work-briefs/`. See the [setup adjustment report](docs/setup-adjustment-report.md) before the next explicitly authorized phase.
+For an agent reviewing the repository, start with [`AGENTS.md`](AGENTS.md).

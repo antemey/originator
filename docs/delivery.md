@@ -1,4 +1,6 @@
-# Operator delivery procedure — not run during setup
+# Operator delivery procedure
+
+Current status (2026-09-20): preparation, the pre-capture freeze and the one-time official held-out evaluation are complete; [VERDICTS.md](../VERDICTS.md) records three PASS outcomes with no differences. Final packaging and the fresh-clone delivery audit remain pending. The prepare instructions below document the completed procedure; do not rerun the official evaluation. [WRITEUP.md](../WRITEUP.md) is the canonical report checked by the validator, and [WRITEUP.pdf](WRITEUP.pdf) is its preferred human-readable rendering. Regenerate the PDF after canonical-text corrections and check both formats for substantive agreement before finalization.
 
 Only Antoine runs `./deliver.sh prepare` and `./deliver.sh finalize`. Close both roles first and run `./use-role.sh none`. No command pushes, rewrites history, deletes capture sources or reruns an existing official verdict.
 

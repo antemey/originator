@@ -1,4 +1,10 @@
-# Current operator handoff — official evaluation complete, 2026-09-20
+# Current operator handoff — final documentation preparation, 2026-09-20
+
+Antoine authorized final documentation integration, obsolete phase-status corrections, reviewer-path checks and removal of the two untracked root write-up preparation documents, without commit, tag, push or finalization. The authoritative delivery documents are `README.md`, canonical `WRITEUP.md` and its preferred rendering `docs/WRITEUP.pdf`. The canonical text now uses the six unnumbered validator headings and the approved precision fixes for the pinned vanilla Woo reference, source-derived rounding regression and captured higher-quantity coffee refusals. Antoine will regenerate the PDF; content consistency must be rechecked afterwards. Frozen inputs and the original official verdict remain immutable. Final packaging and the fresh-clone audit have not been performed.
+
+---
+
+# Historical operator handoff — official evaluation complete, 2026-09-20
 
 Operator-only document; not an input for implementation or independent verification.
 

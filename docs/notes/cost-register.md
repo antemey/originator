@@ -79,3 +79,9 @@ The single official delivery invocation ran 13:26:24.382328–13:26:24.872009 UT
 Imported exactly the three approved fixtures and no probes. Gitleaks on the actual import selection found no secrets. Official evaluation completed once with three PASS results, no differences and exit code 0; the original verdict and all frozen inputs remain intact. The operator checkpoint review covers official evidence, provenance and already-intended workflow documentation, with normal project validation and commit hook required. No final WRITEUP, packaging or push is included.
 
 Checkpoint full offline validation passed 180/180 tests. The exact 18-file selection scan reported two reviewed source-file-digest false positives in the unchanged official verdict and freeze archive. Both values match the frozen adapter file SHA-256; no credentials identified and no scanner bypass or artifact rewrite. Packaging scan disposition remains a later operator matter.
+
+## Final delivery documentation preparation — 2026-09-20
+
+Updated the canonical write-up with the approved unnumbered validator headings and three factual precision fixes. Updated current phase status in scope, delivery guidance and operator handoff; preserved historical records and frozen files. Inspected and removed the two untracked root write-up preparation documents. The approved README reviewer commands passed: full gate with 180 tests in 14 files, nominal discovery replay without differences, and deterministic transition reset with no differences. The operator retains PDF generation; substantive PDF/text agreement remains pending. No official evaluation rerun, commit, tag, push or finalization.
+
+Active effort and monetary cost were not separately instrumented for this documentation pass; no new assignment allowance is inferred.
